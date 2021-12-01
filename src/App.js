@@ -1,22 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
-import myData from './data.json';
-//import { Form, FormText, FormGroup, Label, Col, Button, Input } from 'reactstrap';
-import React, { useEffect } from "react";
+import { Form, FormText, FormGroup, Label, Col, Button, Input } from 'reactstrap';
+import React from "react";
+import axios from "axios";
 
-
+const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
 
 export default function App() {
-
-  let myDataCopy = myData;
+  const [post, setPost] = React.useState(null);
   function handleSubmit(e) {
     e.preventDefault();
-
-    console.log(myData.title);
-    console.log(myDataCopy);
-  }
+    let myData = post;
+    console.log(myData);
+  };
+  React.useEffect(() => {
   
-  useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setPost(response.data);
+    });
+
+
+    
+  
+
     const onClick = () => {
       console.log("body clicked");
     };
@@ -27,13 +33,14 @@ export default function App() {
     };
   }, []);
   
+  
 
   return <div className="App">
   <header className="App-header">
     <img src={logo} className="App-logo" alt="logo" id="logo" />
     </header>
     <form onSubmit={handleSubmit}>
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
     </div>;
     };
