@@ -1,0 +1,49 @@
+{
+    "title": "Question #2",
+    "description": "What are the entries for ringing up a $100 fee on 6/10 and paying for it later 7/15",
+    "correct_answers": [
+    {
+      
+    "type": "cash", 
+    "entries": [
+    {
+    "when": "7/15",
+  
+    "type": "cash",
+    "Dr": 100
+    },
+    {
+    "when": "7/15",
+    "type": "revenue",
+    "Cr": 100
+    }
+    ]
+    },
+    {
+    "type": "accrual",
+    "entries": [
+    {
+    "when": "6/10",
+    "type": "receivable",
+    "Dr": 100
+    },
+    {
+    "when": "6/10",
+    "type": "revenue",
+    "Cr": 100
+    },
+    {
+    "when": "7/15",
+    "type": "cash",
+    "Dr": 100
+    },
+    {
+    "when": "7/15",
+    "type": "receivable",
+    "Cr": 100
+    }
+    ]
+    }
+    ]
+    }
+    

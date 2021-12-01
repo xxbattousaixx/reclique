@@ -1,12 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import myData from './data.json';
 //import { Form, FormText, FormGroup, Label, Col, Button, Input } from 'reactstrap';
 import React, { useEffect } from "react";
+
+
+
 export default function App() {
+
+  let myDataCopy = myData;
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('You clicked submit.');
+
+    console.log(myData.title);
+    console.log(myDataCopy);
   }
+  
   useEffect(() => {
     const onClick = () => {
       console.log("body clicked");
