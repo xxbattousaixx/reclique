@@ -28,3 +28,10 @@ export default function App() {
     </form>
     </div>;
     };
+
+/*
+https://thewebdev.info/2021/07/24/how-to-add-a-click-handler-to-the-body-element-from-within-a-react-component/
+
+https://reactjs.org/docs/handling-events.html
+
+*/
