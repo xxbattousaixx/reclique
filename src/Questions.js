@@ -25,10 +25,9 @@ export default function Questions(props){
                 
 
                 return(
-                    <div id="cq" className='q' key={question.id}>
-                        <h3 className='qt'>{question.title}</h3>
-                        <p className='qd'>{question.description}</p>
-                        <span className='q__fadeOut'></span>
+                    <div id="cq" className='q' key={index}>
+                        <h3 key="title" className='qt'>{question.title}</h3>
+                        <p key="desc" className='qd'>{question.description}</p>
                     </div>
                 )
                 }else{

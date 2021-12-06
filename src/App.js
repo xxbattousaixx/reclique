@@ -1,15 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
 import { Form, Button, Container, Row, Col  } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import 'jquery/src/jquery';
 import Questions from './Questions';
+import Results from './Results';
+
 
 export default function App() {
 var p = 0;
 const [questions, getQuestions] = useState('');
 const [page, getPage] = useState('');
+const [sub, getSub] = useState('');
+const [d1, getD1] = useState('');
+const [t1, getT1] = useState('');
+const [cr1, getCr1] = useState('');
+const [dr1, getDr1] = useState('');
+const [d2, getD2] = useState('');
+const [t2, getT2] = useState('');
+const [dr2, getDr2] = useState('');
+const [cr2, getCr2] = useState('');
 
 const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
 
@@ -28,21 +38,71 @@ const getAllQuestions = () => {
   })
   .catch(error => console.error('Error: '+{error}));
 };
+const updateD1 = (evt) => {
+  getD1(evt.target.value);
+}
+const updateT1 = (evt) => {
+  getT1(evt.target.value);
 
+}
+const updateDr1 = (evt) => {
+  getDr1(evt.target.value);
+}
+const updateCr1 = (evt) => {
+  getCr1(evt.target.value);
+}
+const updateD2 = (evt) => {
+  getD2(evt.target.value);
+}
+const updateT2 = (evt) => {
+  getT2(evt.target.value);
+}
+const updateDr2 = (evt) => {
+  getDr2(evt.target.value);
+}
+const updateCr2 = (evt) => {
+  getCr2(evt.target.value);
+}
 const submitButton = (e) => {
-  console.log('submit');
+ //display res
 };
 
 const onNext = (e) => {
-  if(p===0){
+  if(p<questions.length){
     p++;
-    getPage(p);
-  }else if(p<questions.length-1){
-    p++;
-    console.log('next');
-    getPage(p);
+if (p<=questions.length-1){
+
+  
+
+  const sub = [
+    {
+      "entries": [
+        {
+          "when": d1,
+          "type": t1,
+          "Dr": dr1,
+          "Cr": cr1
+          
+        },
+        {
+          "when": d2,
+          "type": t2,
+          "Dr": dr2,
+          "Cr": cr2,
+
+        }
+      ]
+    }
+  ];
+
+  getSub(sub);
+    getPage(p);  
   };
+}else if (p===questions.length-1){
+  getPage(p);
 }
+
+};
 
 
 
@@ -53,8 +113,30 @@ const onPrev = (e) => {
   p--;
 
   if (p>=0){
-    console.log('prev');
 
+
+  const sub = [
+    {
+      "entries": [
+        {
+          "when": d1,
+          "type": t1,
+          "Dr": dr1,
+          "Cr": cr1
+          
+        },
+        {
+          "when": d2,
+          "type": t2,
+          "Dr": dr2,
+          "Cr": cr2,
+
+        }
+      ]
+    }
+  ];
+
+  getSub(sub);
     getPage(p);  
   };
 }else if (p===0){
@@ -64,9 +146,9 @@ const onPrev = (e) => {
 };
 
 
-  return (<div className="App" id="con1">
+  return (<div className="App" id="con1" key="main">
 
-<Questions questions={questions} page={page}/>
+<Questions key="1" questions={questions} page={page}/>
 
 {/* 
       <Row><br/>
@@ -80,7 +162,7 @@ const onPrev = (e) => {
 
 
 
-<Container id="cf" fluid="md sm xs lg xl">
+<Container key="con" id="cf" fluid="md sm xs lg xl">
 <br/>
 
 
@@ -119,20 +201,30 @@ const onPrev = (e) => {
 <Form onSubmit={submitButton}>
 
 <Row xs={3} md={3} lg={3} sm={3}>
-< Col xs={3} md={3} lg={3} sm={3} ><Form.Control type="date"/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select>
-    <option>Default select</option>
+< Col xs={3} md={3} lg={3} sm={3} ><Form.Control defaultValue='' type="date" onChange={updateD1}/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT1} defaultValue='* cash'> 
+    <option>* revenue</option>
+    <option>* deferred</option>
+    <option>* cash</option>
+    <option>* receivable</option>
+    <option>* contra</option>
+    <option>* system-credit</option>
   </Form.Select></Col>
-   < Col xs={3} md={3} lg={3} sm={3} >  <Form.Control type="text" placeholder="Normal text" />
-  </Col><Col xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control type="text" placeholder="Normal text" />
+   < Col xs={3} md={3} lg={3} sm={3} >  <Form.Control onChange={updateDr1} defaultValue='' type="text" placeholder="Normal text" />
+  </Col><Col xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control onChange={updateCr1} defaultValue='' type="text" placeholder="Normal text" />
   </Col>
 </Row> 
 
 <Row xs={3} md={3} lg={3} sm={3}>
-< Col xs={3} md={3} lg={3} sm={3} ><Form.Control type="date"/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select>
-    <option>Default select</option>
+< Col xs={3} md={3} lg={3} sm={3} ><Form.Control onChange={updateD2} defaultValue='' type="date"/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT2} defaultValue='* cash'>
+<option>* revenue</option>
+    <option>* deferred</option>
+    <option>* cash</option>
+    <option>* receivable</option>
+    <option>* contra</option>
+    <option>* system-credit</option>
   </Form.Select></Col>
-   < Col xs={3} md={3} lg={3} sm={3} >  <Form.Control type="text" placeholder="Normal text" />
-  </Col><Col xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control type="text" placeholder="Normal text" />
+   < Col xs={3} md={3} lg={3} sm={3} >  <Form.Control onChange={updateDr2}  defaultValue='' type="text" placeholder="Normal text" />
+  </Col><Col xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control onChange={updateCr2} defaultValue='' type="text" placeholder="Normal text" />
   </Col>
 </Row> 
 
@@ -169,7 +261,7 @@ const onPrev = (e) => {
 <br/>
 
   </Container>
-
+<Results key='2' sub={sub} questions={questions}/>
     </div>
   );
 } 
