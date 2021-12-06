@@ -1,139 +1,177 @@
 import logo from './logo.svg';
 import './App.css';
-import {Label, Input, Form, Button  } from 'reactstrap';
-import React, { Component } from "react";
+import { Form, Button, Container, Row, Col  } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import 'jquery/src/jquery';
+import Questions from './Questions';
+
+export default function App() {
+var p = 0;
+const [questions, getQuestions] = useState('');
+const [page, getPage] = useState('');
 
 const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
 
 
-function handleSubmit(e) {
-  e.preventDefault();
+useEffect(()=>{
+getAllQuestions();
+getPage(p);
+},[p]);
+
+
+const getAllQuestions = () => {
+  axios.get(baseURL)
+  .then((response)=>{
+    const allQuestions = response.data;
+    getQuestions(allQuestions);
+  })
+  .catch(error => console.error('Error: '+{error}));
 };
 
+const submitButton = (e) => {
+  console.log('submit');
+};
+
+const onNext = (e) => {
+  if(p===0){
+    p++;
+    getPage(p);
+  }else if(p<questions.length-1){
+    p++;
+    console.log('next');
+    getPage(p);
+  };
+}
 
 
-  
-  class App extends Component {
-    state = {
-      questions : []
-    };
-
-    componentDidMount() {
-      const url = baseURL;
-      axios.get(url).then(response => response.data)
-      .then((data) => {
-        this.setState({ questions: data })
-        console.log(this.state.questions[0].title)
-       });
-    }
 
 
-    render() {
+const onPrev = (e) => {
+
+  if(p>0){
+  p--;
+
+  if (p>=0){
+    console.log('prev');
+
+    getPage(p);  
+  };
+}else if (p===0){
+  getPage(p);
+}
+
+};
 
 
   return (<div className="App" id="con1">
 
+<Questions questions={questions} page={page}/>
 
-    {this.state.questions.map((question) => (
-<div>               {question.title}<br/>
-              {question.description}  
-              </div>           
-        ))}
-
-
-    <div class="row">
-        
+{/* 
+      <Row><br/>
+<Col><label><p>hhhhh</p></label></Col>
+</Row><br/> */}
 
 
 
 
-            <div class="col-2 col-lg-2 col-md-2 col-sm-2">
-
-            </div>
-
-            
 
 
-            
-    <div class="col-8 col-lg-8 col-md-8 col-sm-8">
-      <div class="row">
-
-<div class="col-12 col-lg-12 col-md-12 col-sm-12"><Label><p></p></Label></div>
-</div><br/>
-<div class="row">
-<div class="col-3 col-lg-3 col-md-3 col-sm-3"></div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3"></div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3">&nbsp;</div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3" id="vl">&nbsp;</div>
-</div>
-
-<div class="row" id="bb">
-<div class="col-3 col-lg-3 col-md-3 col-sm-3"></div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3"></div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3"> Dr</div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3" id="vl">Cr</div>
-</div>
-
-<div class="row">
-<div class="col-3 col-lg-3 col-md-3 col-sm-3"></div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3"></div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3">&nbsp;</div>
-<div class="col-3 col-lg-3 col-md-3 col-sm-3" id="vl">&nbsp;</div>
-</div>
 
 
-<Form onSubmit={handleSubmit}>
-<div class="row">
+<Container id="cf" fluid="md sm xs lg xl">
+<br/>
 
-< div class="col-3 col-lg-3 col-md-3 col-sm-3" ><Input type="date"> </Input></div>< div class="col-3 col-lg-3 col-md-3 col-sm-3" ><Input type="select"
-   name="2A"
-   id="select"
-   autocomplete="off"
-   required
-   >
-   <option>Carrots</option>
-   <option>Peas</option>
-   <option>Beans</option>
-   <option>Pneumonoultramicroscopicsilicovolcanoconiosis</option>
-   </Input></div>
-   < div class="col-3 col-lg-3 col-md-3 col-sm-3" ><Input></Input></div><div class="col-3 col-lg-3 col-md-3 col-sm-3" id="vl"><Input></Input></div>
-</div> 
-<div class="row">
-< div class="col-3 col-lg-3 col-md-3 col-sm-3" ><Input type="date"></Input></div>< div class="col-3 col-lg-3 col-md-3 col-sm-3" ><Input type="select"
-   name="2A"
-   id="select"
-   autocomplete="off"
-   required
-   >
-   <option>Carrots</option>
-   <option>Peas</option>
-   <option>Beans</option>
-   <option>Pneumonoultramicroscopicsilicovolcanoconiosis</option>
-</Input></div>
-< div class="col-3 col-lg-3 col-md-3 col-sm-3" ><Input></Input></div>< div class="col-3 col-lg-3 col-md-3 col-sm-3" id="vl"><Input></Input></div>
-</div> 
 
+
+
+
+<hr/>
+<br/>
+<br/>
+
+
+
+
+<Row xs={3} md={3} lg={3} sm={3}><Col xs={3} md={3} lg={3} sm={3}></Col>
+<Col xs={3} md={3} lg={3} sm={3}></Col>
+<Col xs={3} md={3} lg={3} sm={3}>&nbsp;</Col>
+<Col xs={3} md={3} lg={3} sm={3} id="vl">&nbsp;</Col>
+</Row>
+
+<Row xs={3} md={3} lg={3} sm={3} id="bb">
+<Col xs={3} md={3} lg={3} sm={3}></Col>
+<Col xs={3} md={3} lg={3} sm={3}></Col>
+<Col xs={3} md={3} lg={3} sm={3}> Dr</Col>
+<Col xs={3} md={3} lg={3} sm={3} id="vl">Cr</Col>
+</Row>
+
+
+<Row xs={3} md={3} lg={3} sm={3}><Col xs={3} md={3} lg={3} sm={3}></Col>
+<Col xs={3} md={3} lg={3} sm={3}></Col>
+<Col xs={3} md={3} lg={3} sm={3}>&nbsp;</Col>
+<Col xs={3} md={3} lg={3} sm={3} id="vl">&nbsp;</Col>
+</Row>
+
+
+
+<Form onSubmit={submitButton}>
+
+<Row xs={3} md={3} lg={3} sm={3}>
+< Col xs={3} md={3} lg={3} sm={3} ><Form.Control type="date"/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select>
+    <option>Default select</option>
+  </Form.Select></Col>
+   < Col xs={3} md={3} lg={3} sm={3} >  <Form.Control type="text" placeholder="Normal text" />
+  </Col><Col xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control type="text" placeholder="Normal text" />
+  </Col>
+</Row> 
+
+<Row xs={3} md={3} lg={3} sm={3}>
+< Col xs={3} md={3} lg={3} sm={3} ><Form.Control type="date"/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select>
+    <option>Default select</option>
+  </Form.Select></Col>
+   < Col xs={3} md={3} lg={3} sm={3} >  <Form.Control type="text" placeholder="Normal text" />
+  </Col><Col xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control type="text" placeholder="Normal text" />
+  </Col>
+</Row> 
+
+<br/>
+<br/><hr/>
+<br/>
+<br/>
+<Row xs={4} md={4} lg={4} sm={4}>
+<Col xs={2} md={2} lg={2} sm={2}>
+
+  </Col>
+  <Col xs={4} md={4} lg={4} sm={4}>
+<Button onClick={onPrev}>Previous</Button>
+  </Col>
+  <Col xs={4} md={4} lg={4} sm={4}>
+
+<Button onClick={onNext}>Next</Button>
+
+  </Col>
+  <Col xs={2} md={2} lg={2} sm={2}>
+
+  </Col>
+  </Row>
+<br/>
+<br/>
+<hr/>
 <br/>
 <br/>
   <Button type="submit">Submit</Button>
 
 
 </Form>
+<br/>
+<br/>
 
-
-</div>
-
-
-    <div class="col-2 col-lg-2 col-md-2 col-sm-2">
-
-    </div>
-
-  </div>
+  </Container>
 
     </div>
   );
 } 
-}
-    export default App;
+
+  
