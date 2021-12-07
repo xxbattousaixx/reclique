@@ -43,25 +43,17 @@ const getAllQuestions = () => {
 };
 const getAllSubmissions = () => {
   var submission = [];
-
-  submission.push(d1);
-  submission.push(t1);
-  submission.push(dr1);
-  submission.push(cr1);
-  
-  submission.push(d2);
-  submission.push(t2);
-  submission.push(dr2);
-  submission.push(cr2);
-
+  var d1v=parseInt(d1.slice(7,9)).toString()+"/"+d1.slice(3,5)
+  var d2v=parseInt(d2.slice(7,9)).toString()+"/"+d2.slice(3,5)
+ 
   submission=[{
-    'date': d1,
+    'date': d1v,
     'type': t1,
     'Dr': dr1,
     'Cr':cr1
   },
   {
-    'date': d2,
+    'date': d2v,
     'type': t2,
     'Dr': dr2,
     'Cr':cr2
@@ -203,10 +195,10 @@ getAllSubmissions();
 
 
 <Row xs={3} md={3} lg={3} sm={3}>
-< Col xs={3} md={3} lg={3} sm={3} ><Form.Control defaultValue='' type="date" onChange={updateD1}/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT1}> 
+< Col xs={3} md={3} lg={3} sm={3} ><Form.Control defaultValue='' type="date" onChange={updateD1}/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select  onChange={updateT1}> 
+<option>cash</option>
     <option>revenue</option>
     <option>deferred</option>
-    <option>cash</option>
     <option>receivable</option>
     <option>contra</option>
     <option>system-credit</option>
@@ -218,9 +210,9 @@ getAllSubmissions();
 
 <Row xs={3} md={3} lg={3} sm={3}>
 < Col xs={3} md={3} lg={3} sm={3} ><Form.Control onChange={updateD2} defaultValue='' type="date"/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT2}>
-<option>revenue</option>
+<option>cash</option>
+    <option>revenue</option>
     <option>deferred</option>
-    <option>cash</option>
     <option>receivable</option>
     <option>contra</option>
     <option>system-credit</option>

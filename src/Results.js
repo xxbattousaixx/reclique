@@ -26,44 +26,54 @@ export default function Results(props){
  return(questions.map((question,i)=>{
 res='';
 var r = 0;
-if(JSON.stringify(sub[r].when)===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).when)){
+if(JSON.stringify(sub[i].when)===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[r])).when)){
     res +='Date correct.';
 }else{
     res+="Date wrong. ";
-}
+    console.log(JSON.stringify(sub[i].when));
+};
 
-    if(JSON.stringify(sub[r].type)===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).type)){
+    if(JSON.stringify(sub[i].type)===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[r])).type)){
         res +='Type correct. ';
     }else{
         res+="Type wrong. ";
     }
-if(JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).Dr)){
+if(JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[i])).Dr)){
 
-    if(JSON.stringify(sub[r])===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).Dr)){
+    if(sub[i].Dr===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[i])).Dr)){
         res +='Dr correct. ';
+r++;
+
     }else{
+        console.log()
         res+="Dr wrong. ";
+r++;
+
     }
+
 }else{
-    if(JSON.stringify(sub[r])===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).Cr)){
+    if(sub[i].Cr===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[i])).Cr)){
         res +='Cr correct.';
+r++;
+
     }else{
         res+="Cr wrong.";
+r++;
+
     }
 
 }
 
                 // if (i===page){
-r++;
              
 
                  
                     return(
                         <div className='answers' key={i}>
-                            <h3 key='n' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).when)}</h3>
-                            <h3 key='n2' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).type)}</h3>
-                            <h3 key='n3' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).Cr)}</h3>
-                            <h3 key='n4' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[0])).Dr)}</h3>
+                            <h3 key='n' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[r-1])).when)}</h3>
+                            <h3 key='n2' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[r-1])).type)}</h3>
+                            <h3 key='n3' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[r-1])).Dr)}</h3>
+                            <h3 key='n4' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[r-1])).Cr)}</h3>
                             
                             <h3 key='n5' className='qt'>{JSON.stringify(sub[i])}</h3> 
 
@@ -79,7 +89,9 @@ r++;
                 // }
 
 
-            }));
+            }
+            
+            ));
 
             
         }
