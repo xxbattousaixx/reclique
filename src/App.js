@@ -54,6 +54,20 @@ const getAllSubmissions = () => {
   submission.push(dr2);
   submission.push(cr2);
 
+  submission=[{
+    'date': d1,
+    'type': t1,
+    'Dr': dr1,
+    'Cr':cr1
+  },
+  {
+    'date': d2,
+    'type': t2,
+    'Dr': dr2,
+    'Cr':cr2
+
+  }];
+
   console.log(submission);
   getSub(submission);
 ;
@@ -88,11 +102,8 @@ const updateCr2 = (evt) => {
 const submitButton = (e) => {
 
 getAllSubmissions();
-var result = '';
-if (d1 === ans.correct_answers)
-{
+var result ='';
 
-}
   getRes(result);
 }
 
@@ -192,13 +203,13 @@ getAllSubmissions();
 
 
 <Row xs={3} md={3} lg={3} sm={3}>
-< Col xs={3} md={3} lg={3} sm={3} ><Form.Control defaultValue='' type="date" onChange={updateD1}/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT1} defaultValue='* cash'> 
-    <option>* revenue</option>
-    <option>* deferred</option>
-    <option>* cash</option>
-    <option>* receivable</option>
-    <option>* contra</option>
-    <option>* system-credit</option>
+< Col xs={3} md={3} lg={3} sm={3} ><Form.Control defaultValue='' type="date" onChange={updateD1}/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT1}> 
+    <option>revenue</option>
+    <option>deferred</option>
+    <option>cash</option>
+    <option>receivable</option>
+    <option>contra</option>
+    <option>system-credit</option>
   </Form.Select></Col>
    < Col xs={3} md={3} lg={3} sm={3} >  <Form.Control onChange={updateDr1} defaultValue='' type="text" placeholder="Normal text" />
   </Col><Col xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control onChange={updateCr1} defaultValue='' type="text" placeholder="Normal text" />
@@ -206,13 +217,13 @@ getAllSubmissions();
 </Row> 
 
 <Row xs={3} md={3} lg={3} sm={3}>
-< Col xs={3} md={3} lg={3} sm={3} ><Form.Control onChange={updateD2} defaultValue='' type="date"/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT2} defaultValue='* cash'>
-<option>* revenue</option>
-    <option>* deferred</option>
-    <option>* cash</option>
-    <option>* receivable</option>
-    <option>* contra</option>
-    <option>* system-credit</option>
+< Col xs={3} md={3} lg={3} sm={3} ><Form.Control onChange={updateD2} defaultValue='' type="date"/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT2}>
+<option>revenue</option>
+    <option>deferred</option>
+    <option>cash</option>
+    <option>receivable</option>
+    <option>contra</option>
+    <option>system-credit</option>
   </Form.Select></Col>
    < Col xs={3} md={3} lg={3} sm={3} >  <Form.Control onChange={updateDr2}  defaultValue='' type="text" placeholder="Normal text" />
   </Col><Col xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control onChange={updateCr2} defaultValue='' type="text" placeholder="Normal text" />
