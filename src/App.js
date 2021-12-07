@@ -12,6 +12,8 @@ var p = 0;
 const [questions, getQuestions] = useState('');
 const [page, getPage] = useState('');
 const [sub, getSub] = useState('');
+const [ans, getAns] = useState('');
+const [res, getRes] = useState('');
 const [d1, getD1] = useState('');
 const [t1, getT1] = useState('');
 const [cr1, getCr1] = useState('');
@@ -26,6 +28,7 @@ const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/qu
 
 useEffect(()=>{
 getAllQuestions();
+getAnswers();
 getPage(p);
 },[p]);
 
@@ -38,6 +41,28 @@ const getAllQuestions = () => {
   })
   .catch(error => console.error('Error: '+{error}));
 };
+const getAllSubmissions = () => {
+  var submission = [];
+
+  submission.push(d1);
+  submission.push(t1);
+  submission.push(dr1);
+  submission.push(cr1);
+  
+  submission.push(d2);
+  submission.push(t2);
+  submission.push(dr2);
+  submission.push(cr2);
+
+  console.log(submission);
+  getSub(submission);
+;
+  
+}
+const getAnswers=()=>{
+  var ca = questions.correct_answers;
+  getAns(ca);
+}
 const updateD1 = (evt) => {
   getD1(evt.target.value);
 }
@@ -64,39 +89,24 @@ const updateCr2 = (evt) => {
   getCr2(evt.target.value);
 }
 const submitButton = (e) => {
- //display res
-};
+
+  getAllSubmissions();
+  getAnswers();
+
+}
 
 const onNext = (e) => {
-  if(p<questions.length){
+  if(p<questions.length-1){
+getAllSubmissions();
+
     p++;
-if (p<=questions.length-1){
 
-  
+if ((p>=0)&&(p<questions.length)){
 
-  const sub = [
-    {
-      "entries": [
-        {
-          "when": d1,
-          "type": t1,
-          "Dr": dr1,
-          "Cr": cr1
-          
-        },
-        {
-          "when": d2,
-          "type": t2,
-          "Dr": dr2,
-          "Cr": cr2,
+//getSub()
 
-        }
-      ]
-    }
-  ];
-
-  getSub(sub);
-    getPage(p);  
+getPage(p);  
+p--;
   };
 }else if (p===questions.length-1){
   getPage(p);
@@ -110,36 +120,17 @@ if (p<=questions.length-1){
 const onPrev = (e) => {
 
   if(p>0){
+getAllSubmissions();
+
   p--;
 
-  if (p>=0){
-
-
-  const sub = [
-    {
-      "entries": [
-        {
-          "when": d1,
-          "type": t1,
-          "Dr": dr1,
-          "Cr": cr1
-          
-        },
-        {
-          "when": d2,
-          "type": t2,
-          "Dr": dr2,
-          "Cr": cr2,
-
-        }
-      ]
-    }
-  ];
-
-  getSub(sub);
+  if ((p<=questions.length-1)&&(p>=0)){
+//getSub()
     getPage(p);  
   };
 }else if (p===0){
+  getAllSubmissions();
+
   getPage(p);
 }
 
@@ -261,7 +252,7 @@ const onPrev = (e) => {
 <br/>
 
   </Container>
-<Results key='2' sub={sub} questions={questions}/>
+<Results key='2' ans={ans} sub={sub} questions={questions}/>
     </div>
   );
 } 

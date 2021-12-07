@@ -8,19 +8,25 @@ export default function Results(props){
     const displayResults = (props) => {
         const {questions} = props
         const {sub} = props;
+        const {ans} = props;
+        const {res} = props;
+
 
         if (sub.length > 0){
 
 
             
-            return(questions.map((question,index)=>{
+            return(questions.correct_answers.map((answer,index)=>{
       
-                if(sub.entries){
+                if(sub.length>0){
                 
                 return(
                     <div className='answers' key={index}>
-                        <h3 key='n' className='qt'>{question.correct_answers.entries}</h3>
-                        <h3 key='n2' className='qt2'>{sub.entries}</h3>          
+                        <h3 key='n' className='qt'>{answer}</h3>
+                        <h3 key='n2' className='qt2'>{sub}</h3> 
+                        <br/>
+                        <br/><br/>
+                        <p></p>         
                                   </div>
                 )
                 
