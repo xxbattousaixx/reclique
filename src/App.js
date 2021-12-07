@@ -251,7 +251,7 @@ getAllSubmissions();
 <br/>
 
   </Container>
-<Results key='2' d1={d1} t1={t1} dr1={dr1} cr1={cr1} d2={d2} t2={t2} dr2={dr2} cr2={cr2} res={res} sub={sub} questions={questions}/>
+<Results key='2' page={page} d1={d1} t1={t1} dr1={dr1} cr1={cr1} d2={d2} t2={t2} dr2={dr2} cr2={cr2} res={res} sub={sub} questions={questions}/>
     </div>
   );
 } 
