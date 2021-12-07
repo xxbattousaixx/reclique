@@ -12,8 +12,9 @@ var p = 0;
 const [questions, getQuestions] = useState('');
 const [page, getPage] = useState('');
 const [sub, getSub] = useState('');
-const [ans, getAns] = useState('');
 const [res, getRes] = useState('');
+const [ans, getAns] = useState('');
+
 const [d1, getD1] = useState('');
 const [t1, getT1] = useState('');
 const [cr1, getCr1] = useState('');
@@ -28,7 +29,6 @@ const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/qu
 
 useEffect(()=>{
 getAllQuestions();
-getAnswers();
 getPage(p);
 },[p]);
 
@@ -59,12 +59,9 @@ const getAllSubmissions = () => {
 ;
   
 }
-const getAnswers=()=>{
-  var ca = questions.correct_answers;
-  getAns(ca);
-}
+
 const updateD1 = (evt) => {
-  getD1(evt.target.value);
+  getD1(evt.target.value.slice(2));
 }
 const updateT1 = (evt) => {
   getT1(evt.target.value);
@@ -77,7 +74,7 @@ const updateCr1 = (evt) => {
   getCr1(evt.target.value);
 }
 const updateD2 = (evt) => {
-  getD2(evt.target.value);
+  getD2(evt.target.value.slice(2));
 }
 const updateT2 = (evt) => {
   getT2(evt.target.value);
@@ -90,9 +87,13 @@ const updateCr2 = (evt) => {
 }
 const submitButton = (e) => {
 
-  getAllSubmissions();
-  getAnswers();
+getAllSubmissions();
+var result = '';
+if (d1 === ans.correct_answers)
+{
 
+}
+  getRes(result);
 }
 
 const onNext = (e) => {
@@ -189,7 +190,6 @@ getAllSubmissions();
 
 
 
-<Form onSubmit={submitButton}>
 
 <Row xs={3} md={3} lg={3} sm={3}>
 < Col xs={3} md={3} lg={3} sm={3} ><Form.Control defaultValue='' type="date" onChange={updateD1}/> </Col>< Col xs={3} md={3} lg={3} sm={3} >    <Form.Select onChange={updateT1} defaultValue='* cash'> 
@@ -244,15 +244,14 @@ getAllSubmissions();
 <hr/>
 <br/>
 <br/>
-  <Button type="submit">Submit</Button>
+  <Button onClick={submitButton}>Submit</Button>
 
 
-</Form>
 <br/>
 <br/>
 
   </Container>
-<Results key='2' ans={ans} sub={sub} questions={questions}/>
+<Results key='2' d1={d1} t1={t1} dr1={dr1} cr1={cr1} d2={d2} t2={t2} dr2={dr2} cr2={cr2} res={res} sub={sub} questions={questions}/>
     </div>
   );
 } 
