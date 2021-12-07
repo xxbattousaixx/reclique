@@ -30,7 +30,6 @@ if(JSON.stringify(sub[i].when)===JSON.stringify(JSON.parse(JSON.stringify(JSON.p
     res +='Date correct.';
 }else{
     res+="Date wrong. ";
-    console.log(JSON.stringify(sub[i].when));
 };
 
     if(JSON.stringify(sub[i].type)===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[r])).type)){

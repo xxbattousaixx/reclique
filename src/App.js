@@ -47,13 +47,13 @@ const getAllSubmissions = () => {
   var d2v=parseInt(d2.slice(7,9)).toString()+"/"+d2.slice(3,5)
  
   submission=[{
-    'date': d1v,
+    'when': d1v,
     'type': t1,
     'Dr': dr1,
     'Cr':cr1
   },
   {
-    'date': d2v,
+    'when': d2v,
     'type': t2,
     'Dr': dr2,
     'Cr':cr2
