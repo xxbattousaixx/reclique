@@ -26,8 +26,8 @@ export default function Questions(props){
 
                 return(
                     <div id="cq" className='q' key={index}>
-                        <h3 key="title" className='qt'>{question.title}</h3>
-                        <p key="desc" className='qd'>{question.description}</p>
+                        <h1 key="title" className='qt'>{question.title}</h1>
+                        <h3 key="desc" className='qd'>{question.description}</h3>
                     </div>
                 )
                 }else{

@@ -1,6 +1,6 @@
 import './App.css';
 import { Form, Button, Container, Row, Col  } from 'react-bootstrap';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef , useState } from "react";
 import axios from "axios";
 import 'jquery/src/jquery';
 import Questions from './Questions';
@@ -14,7 +14,7 @@ const [page, getPage] = useState('');
 const [sub, getSub] = useState('');
 const [res, getRes] = useState('');
 const [ans, getAns] = useState('');
-
+const containerEndRef = useRef();
 const [d1, getD1] = useState('');
 const [t1, getT1] = useState('');
 const [cr1, getCr1] = useState('');
@@ -32,6 +32,10 @@ getAllQuestions();
 getPage(p);
 },[p]);
 
+
+const  scrollToBottom = () => {
+  containerEndRef.current.scrollIntoView({ behavior: 'smooth' })
+}
 
 const getAllQuestions = () => {
   axios.get(baseURL)
@@ -95,8 +99,8 @@ const submitButton = (e) => {
 
 getAllSubmissions();
 var result ='';
-
-  getRes(result);
+getRes(result);
+scrollToBottom();
 }
 
 const onNext = (e) => {
@@ -167,6 +171,10 @@ getAllSubmissions();
 <hr/>
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 
@@ -223,24 +231,26 @@ getAllSubmissions();
 </Row> 
 
 <br/>
-<br/><hr/>
+<br/><hr/><br/>
 <br/>
 <br/>
-<Row xs={4} md={4} lg={4} sm={4}>
-<Col xs={2} md={2} lg={2} sm={2}>
+<br/>
+<br/>
+<br/>
 
-  </Col>
-  <Col xs={4} md={4} lg={4} sm={4}>
+<br/>
+<br/>
+<Row xs={3} md={3} lg={3} sm={3}>
+
+  <Col xs={6} md={6} lg={6} sm={6}>
 <Button onClick={onPrev}>Previous</Button>
   </Col>
-  <Col xs={4} md={4} lg={4} sm={4}>
+  <Col xs={6} md={6} lg={6} sm={6}>
 
 <Button onClick={onNext}>Next</Button>
 
   </Col>
-  <Col xs={2} md={2} lg={2} sm={2}>
-
-  </Col>
+ 
   </Row>
 <br/>
 <br/>
@@ -252,9 +262,16 @@ getAllSubmissions();
 
 <br/>
 <br/>
+<div ref={containerEndRef} />
+
 
   </Container>
-<Results key='2' page={page} d1={d1} t1={t1} dr1={dr1} cr1={cr1} d2={d2} t2={t2} dr2={dr2} cr2={cr2} res={res} sub={sub} questions={questions}/>
+  <Container>
+  
+  <Results  id="answers" key='2' page={page} d1={d1} t1={t1} dr1={dr1} cr1={cr1} d2={d2} t2={t2} dr2={dr2} cr2={cr2} res={res} sub={sub} questions={questions}/>
+
+  </Container>
+
     </div>
   );
 } 
