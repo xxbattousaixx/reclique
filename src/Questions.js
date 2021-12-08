@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable react/prop-types */
 
 import React from 'react';
 import 'jquery/src/jquery';
@@ -46,7 +48,7 @@ export default function Questions(props){
 
 
 
-        };
+        }
     }
 
 return (
