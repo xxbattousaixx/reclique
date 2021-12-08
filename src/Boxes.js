@@ -27,7 +27,7 @@ function Boxes(props){
 
 
                 
-                    for (let c=0;c<Object.keys(q.correct_answers[i].entries).length;c++){
+                    for (let c=0;c<Object.keys(q.correct_answers).length;c++){
 
 
                 return(

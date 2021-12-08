@@ -18,11 +18,35 @@ export default function App() {
     const [page, getPage] = useState('');
     const [sub, getSub] = useState('');
     const [res, getRes] = useState('');
+    const [ans,getAns] = useState('');
     const [update, getUpdate] = useState('');
     const inputRef = React.createRef();
-let id1 = '';
+    let id1 = inputRef;
     const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
     var submission = [{
+      0:[{
+      'date': '',
+      'type': '',
+      'Dr': '',
+      'Cr': ''
+    },{
+      'date': '',
+      'type': '',
+      'Dr': '',
+      'Cr': ''
+    },
+    {
+      'date': '',
+      'type': '',
+      'Dr': '',
+      'Cr': ''
+    },{
+      'date': '',
+      'type': '',
+      'Dr': '',
+      'Cr': ''
+   }],
+   1:[{
       'date': '',
       'type': '',
       'Dr': '',
@@ -45,7 +69,9 @@ let id1 = '';
       'type': '',
       'Dr': '',
       'Cr': ''
-    }];
+    }]
+}];
+
 
     useEffect(() => {
       getAllQuestions();
@@ -64,23 +90,34 @@ let id1 = '';
 
 
     const updateInput = () => {
-      let id1 = inputRef;
-      let name = '';
-      if (name === 'date') {
-        submission[0].date = update.slice(2);
-      } else if (name === 'type') {
-        submission[0].type = update;
-      } else if (name === 'Dr') {
-        submission[0].Dr = update;
-      } else if (name === 'Cr') {
-        submission[0].Cr = update;
-      } else { console.log("FAIL"); }
-      console.log(submission);
-      getSub(submission);
-      console.log(id1);
-      console.log(sub);
+      for (let n=0; n<Object.keys(questions).length;n++){
+      for (let b=0;b<Object.keys(JSON.parse(questions)[n].correct_answers).length;b++){
+      for (let l=0;l<Object.keys(JSON.parse(questions)[n].correct_answers[b].entries).length;l++){
+      if (id1[0].name === 'date') {
+        submission[n][b][l] = update.slice(2);
+      } else if (id1[0].name === 'type') {
+        console.log("BALLER");
+        submission[n][b][l].type = update;
+      } else if (id1[0].Dr === 'Dr') {
+        console.log("BALLER");
 
-    };
+        submission[n][b][l].Dr = update;
+        console.log("BALLER");
+
+      } else if (id1[0].Cr === 'Cr') {
+        console.log("BALLER");
+
+        submission[n][b][l].Cr = update;
+      } else { console.log("FAIL"); }
+
+
+      getSub(submission);
+      getAns(JSON.parse(questions)[n].correct_answers[b]);
+      console.log(JSON.stringify(ans));
+      console.log(id1.current);
+      console.log(sub);
+    }}
+}    };
 
     const submitButton = (e) => {
 
@@ -135,7 +172,6 @@ let id1 = '';
 
       <Questions key="1" questions={questions} page={page} />
 
-      <p>{JSON.stringify(questions[0].question.correct_answers[0].entries[0].when)}</p>
 
 <Container fluid>
       <Container key="con" id="cf" fluid>
@@ -174,7 +210,7 @@ let id1 = '';
         </Container></Container>
 <Container fluid>
 
-          <Boxes inputRef={id => id1 = id}   updateInput={getUpdate} questions={questions} p={p} />
+          <Boxes inputRef={inputRef} updateInput={getUpdate} questions={questions} p={p} />
    </Container>
       <br />
       <br />
