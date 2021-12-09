@@ -21,10 +21,10 @@ export default function Boxes(props){
             console.log(Object.keys(JSON.parse(questions)[{p}].correct_answers[{g}].entries));
                     
                     <div id="box" key={'box${p}'} className='b'>
-                   {Object.keys(JSON.parse(questions)[{p}].correct_answers[{g}].entries.map((ans,i)=>{
+                   {Object.keys(JSON.parse(questions)[{p}].correct_answers[{g}].entries.map((q,i)=>{
 
 
-for(z=0;z<Object.keys(ans).length;z++)
+for(z=0;z<Object.keys(q.correct_answers[p].entries[i]).length;z++)
                        {
                         return(<Col key='col${i}' xs={2} md={2} lg={2} sm={2}>
                         <Col key={'col${Object.keys(a).length}'} xs={3} md={3} lg={3} sm={3} ><Form.Control ref={props.inputRef} key={'date${i}'} name='date' value=''  type="date" onChange={updateInput}/> </Col>< Col key={'col${Object.keys(a).length}'} xs={3} md={3} lg={3} sm={3} >    <Form.Select key={'type${i}'} name='type' defaultValue=''  onChange={updateInput}> 
