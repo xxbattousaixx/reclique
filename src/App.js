@@ -116,10 +116,12 @@ export default function App() {
       console.log(JSON.stringify(ans));
       console.log(id1.current);
       console.log(sub);
+      console.log()
     }}
 }    };
 
     const submitButton = (e) => {
+      e.preventDefault();
 
       var result = '';
       updateInput();
@@ -127,6 +129,8 @@ export default function App() {
     };
 
     const onNext = (e) => {
+e.preventDefault();
+
       if (p < questions.length - 1) {
         getSub(submission);
 
@@ -149,7 +153,7 @@ export default function App() {
 
 
     const onPrev = (e) => {
-
+      e.preventDefault();
       if (p > 0) {
         getSub(submission);
 
@@ -168,13 +172,13 @@ export default function App() {
 
     return (
     
-    <div className="App" id="con1">
+    <div key="app" className="App" id="con1">
 
-      <Questions key="1" questions={questions} page={page} />
+      <Questions key="questions" questions={questions} page={page} />
 
 
-<Container fluid>
-      <Container key="con" id="cf" fluid>
+<Container key="head" fluid>
+      <Container key="head2" id="cf" fluid>
         <br />
 
 
@@ -208,9 +212,12 @@ export default function App() {
           <Col xs={3} md={3} lg={3} sm={3} id="vl">&nbsp;</Col>
         </Row>
         </Container></Container>
-<Container fluid>
+<Container key="boxes" fluid>
 
+  
           <Boxes inputRef={inputRef} updateInput={getUpdate} questions={questions} p={p} />
+  
+  
    </Container>
       <br />
       <br />
@@ -226,7 +233,7 @@ export default function App() {
       <br/>
       <br/>
       <br/>
-      <Container fluid>
+      <Container key="buttons" fluid>
         <Row xs={4} md={4} lg={4} sm={4}>
           <Col xs={2} md={2} lg={2} sm={2}>
 
@@ -258,10 +265,10 @@ export default function App() {
 
       <br />
       <br />
-
+<Container key="results" fluid>
       <Results key='2' sub={sub} res={res} page={page} questions={questions} />
 
-
+</Container>
     </div>
 
     );
