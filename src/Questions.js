@@ -16,20 +16,20 @@ export default function Questions(props){
 
 
             
-            return(questions.map((question,index)=>{
+            return(questions.map((question,i)=>{
 
-                if (index===page){
+                if (i===page){
                 
-                console.log(index);
+                console.log(i);
 
                 console.log(question);
 
                 
 
                 return(
-                    <div id="cq" className='q' key={index}>
-                        <h1 key="title" className='qt'>{question.title}</h1>
-                        <h3 key="desc" className='qd'>{question.description}</h3>
+                    <div id="cq" key='q${i}'>
+                        <h1 key="title${i}" >{question.title}</h1>
+                        <h3 key="desc${i}">{question.description}</h3>
                     </div>
                 )
                 }else{
@@ -42,7 +42,7 @@ export default function Questions(props){
 
 
              else {
-            return (<h3>No Questions</h3>);
+            return (<h3 key='noq${i}'>No Questions</h3>);
 
 
 

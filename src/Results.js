@@ -100,31 +100,27 @@ if(((res22[i][c].Cr==='correct')||(res22[i][c].Cr==='correct'))&&(res22[i][c].Cr
 
                  
                     return(
+                        <Container key="overview" fluid>
 
 
                         <div className='answers' id="results" key={i}>
-                            <Container fluid>
-                            <Row xs={3} md={3} lg={3} sm={3}>
-<Col xs={3} md={3} lg={3} sm={3}>
                             
-                            <h3 key='n5' className='qt'>{JSON.stringify(sub[{i}])}</h3> 
-                            <h3 key='n6' className='qt'>{qs[{i}]}</h3> 
-                            <h3 key='n7' className='qt'>{question.correct_answers[{c}].entries[{y}]}</h3> 
+                            <h4 key='n5' className='qt'>{JSON.stringify(sub[{i}])}</h4> 
+                            <h4 key='n6' className='qt'>{qs[{i}][{c}]}</h4> 
+                            <h4 key='n7' className='qt'>{question.correct_answers[{c}].entries[{y}]}</h4> 
 
-                            </Col>
-
-                            <h3 key='n9' className='qt'>{res22.map((row,i)=>{
-                        return(<Col key={i} xs={3} md={3} lg={3} sm={3}><div>
+                            <h4 key='n9' className='qt'>{res22.map((row,i)=>{
+                        return(<Col key='col${i}' xs={2} md={2} lg={2} sm={2}><div>
 <h4>Date--<br/> Answer: {row[{c}].entries[{y}].when}<br/> vs. <br/> Your answer: {sub[{i}].when}</h4>
 <h4>Type--<br/> Answer: {row[{c}].entries[{y}].type}<br/> vs. <br/> Your answer: {(sub[{i}].type)}</h4>
 <h4>Dr--<br/> Answer: {row[{c}].entries[{y}].Dr}<br/> vs.<br/> Your answer: {sub[{i}].Dr}</h4>
 <h4>Cr--<br/> Answer: {row[{c}].entries[{y}].Cr}<br/> vs.<br/> Your answer: {sub[{i}].Cr}</h4>
 
-                        </div></Col>)})}</h3>
+                        </div></Col>)})}</h4>
                             <br/>
                             <br/><br/>
                             <h4></h4>         
-                                     </Row></Container> </div>
+                             </div>  </Container>
                     )
                 // }else{
                 //     return('');
