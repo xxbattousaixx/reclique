@@ -1,36 +1,19 @@
+
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.answers{
+text-align: center;}
+#qt{
+  width:20%  !important;
+  font-size: 2px !important;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-#bigresults{
+#results{
   height: 100%;
-}
-
-.App-link {
-  color: #61dafb;
+  width:100%
 }
 #select {
-  display: flex;
+display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
@@ -54,11 +37,3 @@ width:100%;
   width:100vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

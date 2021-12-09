@@ -1,32 +1,33 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable react/prop-types */
 
 import React from 'react';
 import 'jquery/src/jquery';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Container} from 'react-bootstrap';
 
 export default function Results(props){
 
 
 
     const displayResults = (props) => {
-        const {questions} = props
+        const {questions} = props;
         const {sub} = props;
         var {res} = props;
-        const {d1} = props;
-        const {t1} = props;
-        const {dr1} = props;
-        const {cr1} = props;
-        const {d2} = props;
-        const {t2} = props;
-        const {dr2} = props;
-        const {cr2} = props;
         const {page} = props;
+
         var qs=[];
-        let b = 0;
-     
 
         if (sub.length > 0){
  return(questions.map((question,i)=>{
-    res=[{
+for(let f=0;f<Object.keys(question.correct_answers).length;f++){
+    qs[f].push({
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr':''})
+}     
+
+    let res22=[{
         'when': '',
         'type': '',
         'Dr': '',
@@ -38,70 +39,88 @@ export default function Results(props){
         'Dr': '',
         'Cr':''
     
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr':''
+    
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr':''
+    
       }];
-var r = 0;
-for (let c=0;c<JSON.parse(JSON.stringify(question.correct_answers[i])).entries.length;c++){
+    console.log(Object.keys(question.correct_answers[i].entries));
 
-if(JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])).when)===JSON.stringify(sub[i].when)){
-    res[i].when ='correct';
-}else{   res[i].when ='incorrect';}
+for (let c=0;c<Object.keys(question.correct_answers[c]).length;c++){
+    console.log(Object.keys(question.correct_answers[c].entries));
+    
+    for (let y=0;y<Object.keys(question.correct_answers[i].entries[c]).length;y++){
+        console.log(Object.keys(question.correct_answers[c].entries[y].when));
+        console.log(Object.keys(question.correct_answers[c].entries[y].type));
+        console.log(Object.keys(question.correct_answers[c].entries[y].Dr));
+        console.log(Object.keys(question.correct_answers[c].entries[y].Cr));
 
-    if(JSON.stringify(sub[i].type)===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[c])).entries[r])).type)){
-        res[i].type ='correct';
-    }else{   res[i].type ='incorrect';}
 
-if(JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])).Dr)){
+if(sub[c].when===question.correct_answers[c].entries[c].when){
+    res22[i][c].when ='correct';
+    qs[c].when ='correct';
+}else{   res22[c].when ='incorrect';}
 
-    if(sub[i].Dr===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])).Dr)){
-        res[i].Dr ='correct';
-        r++;
+    if(sub[i].type===question.correct_answers[c].entries[c].type){
+        res22[i][c].type ='correct';
+    qs[c].type ='correct';
 
-    }else{  res[i].Dr ='incorrect';
-    r++;
+    }else{   res22[i][c].type ='incorrect';}
+
+if(question.correct_answers[i].entries[c].Dr){
+
+    if(sub[i].Dr===question.correct_answers[i].entries[c].Dr){
+        res22[i][c].Dr ='correct';
+
+    }else{  res22[i][c].Dr ='incorrect';
 }
 
 }else{
-    if(sub[i].Cr===JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])).Cr)){
-        res[i].Cr ='correct';
-        r++;
+    if(sub[i].Cr===question.correct_answers[i].entries[clearInterval].Cr){
+        res22[i][c].Cr ='correct';
 
     }
-else{    res[i].Cr ='incorrect';
-r++;
+else{    res22[i][c].Cr ='incorrect';
 }
-if(((res[i].Cr==='correct')||(res[i].Cr==='correct'))&&(res[i].Cr==='correct')&&(res[i].Cr==='correct')){
-    qs[i]='correct';
-    b = i;
+if(((res22[i][c].Cr==='correct')||(res22[i][c].Cr==='correct'))&&(res22[i][c].Cr==='correct')&&(res22[i][c].Cr==='correct')){
+    qs[i][c]='correct';
 
-}
-                // if (i===page){
+}                // if (i===page){
              
 
                  
                     return(
+                        <Container key="overview" fluid>
 
 
-                        <div className='answers' id="bigresults" key={i}>
-<Col xs={6} md={6} lg={6} sm={6}>
+                        <div className='answers' id="results" key={i}>
                             
-                            <h3 key='n5' className='qt'>{JSON.stringify(sub[i])}</h3> 
-                            <h3 key='n6' className='qt'>{qs[i]}</h3> 
-                            <h3 key='n7' className='qt'>{JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])}</h3> 
+                            <h4 key='n5' className='qt'>{JSON.stringify(sub[{i}])}</h4> 
+                            <h4 key='n6' className='qt'>{qs[{i}][{c}]}</h4> 
+                            <h4 key='n7' className='qt'>{question.correct_answers[{c}].entries[{y}]}</h4> 
 
-                            </Col>
+                            <h4 key='n9' className='qt'>{res22.map((row,i)=>{
+                        return(<Col key='col${i}' xs={2} md={2} lg={2} sm={2}><div>
+<h4>Date--<br/> Answer: {row[{c}].entries[{y}].when}<br/> vs. <br/> Your answer: {sub[{i}].when}</h4>
+<h4>Type--<br/> Answer: {row[{c}].entries[{y}].type}<br/> vs. <br/> Your answer: {(sub[{i}].type)}</h4>
+<h4>Dr--<br/> Answer: {row[{c}].entries[{y}].Dr}<br/> vs.<br/> Your answer: {sub[{i}].Dr}</h4>
+<h4>Cr--<br/> Answer: {row[{c}].entries[{y}].Cr}<br/> vs.<br/> Your answer: {sub[{i}].Cr}</h4>
 
-                            <h3 key='n9' className='qt'>{res.map((row,i)=>{
-                        return(<Col xs={3} md={3} lg={3} sm={3}><div>
-<h4>Date--<br/> Answer: {JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])).when)}<br/> vs. <br/> Your answer: {JSON.stringify(sub[i].when)}</h4>
-<h4>Type--<br/> Answer: {JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])).type)}<br/> vs. <br/> Your answer: {JSON.stringify(sub[i].type)}</h4>
-<h4>Dr--<br/> Answer: {JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])).Dr)}<br/> vs.<br/> Your answer: {sub[i].Dr}</h4>
-<h4>Cr--<br/> Answer: {JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(question.correct_answers[i])).entries[c])).Cr)}<br/> vs.<br/> Your answer: {sub[i].Cr}</h4>
-
-                        </div></Col>)})}</h3>
+                        </div></Col>)})}</h4>
                             <br/>
                             <br/><br/>
                             <h4></h4>         
-                                      </div>
+                             </div>  </Container>
                     )
                 // }else{
                 //     return('');
@@ -110,7 +129,7 @@ if(((res[i].Cr==='correct')||(res[i].Cr==='correct'))&&(res[i].Cr==='correct')&&
 
             }
         }
-     } ));
+     } }));
 
             
         }
@@ -124,7 +143,7 @@ if(((res[i].Cr==='correct')||(res[i].Cr==='correct'))&&(res[i].Cr==='correct')&&
 
 
 
-        };
+        }
     }
 
 return (
