@@ -15,12 +15,13 @@ export default function Results(props){
         var {res} = props;
         const {page} = props;
 
-        var qs=[];
+        var qs=[{},{},{},{}];
 
         if (sub.length > 0){
  return(questions.map((question,i)=>{
+
 for(let f=0;f<Object.keys(question.correct_answers).length;f++){
-    qs[f].push({
+    qs.push({
         'when': '',
         'type': '',
         'Dr': '',
@@ -28,50 +29,67 @@ for(let f=0;f<Object.keys(question.correct_answers).length;f++){
 }     
 
     let res22=[{
-        'when': '',
+        0:[{
+        'date': '',
         'type': '',
         'Dr': '',
-        'Cr':''
+        'Cr': ''
+      },{
+        'date': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
       },
       {
-        'when': '',
+        'date': '',
         'type': '',
         'Dr': '',
-        'Cr':''
-    
+        'Cr': ''
+      },{
+        'date': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+     }],
+     1:[{
+        'date': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
       },
       {
-        'when': '',
+        'date': '',
         'type': '',
         'Dr': '',
-        'Cr':''
-    
+        'Cr': ''
       },
       {
-        'when': '',
+        'date': '',
         'type': '',
         'Dr': '',
-        'Cr':''
-    
-      }];
-    console.log(Object.keys(question.correct_answers[i].entries));
+        'Cr': ''
+      },
+      {
+        'date': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      }]
+  }];
+
 
 for (let c=0;c<Object.keys(question.correct_answers[c]).length;c++){
-    console.log(Object.keys(question.correct_answers[c].entries));
     
     for (let y=0;y<Object.keys(question.correct_answers[i].entries[c]).length;y++){
-        console.log(Object.keys(question.correct_answers[c].entries[y].when));
-        console.log(Object.keys(question.correct_answers[c].entries[y].type));
-        console.log(Object.keys(question.correct_answers[c].entries[y].Dr));
-        console.log(Object.keys(question.correct_answers[c].entries[y].Cr));
+      
 
 
-if(sub[c].when===question.correct_answers[c].entries[c].when){
+if(sub[i][c].when===question.correct_answers[c].entries[c].when){
     res22[i][c].when ='correct';
     qs[c].when ='correct';
 }else{   res22[c].when ='incorrect';}
 
-    if(sub[i].type===question.correct_answers[c].entries[c].type){
+    if(sub[i][c].type===question.correct_answers[c].entries[c].type){
         res22[i][c].type ='correct';
     qs[c].type ='correct';
 
@@ -79,7 +97,7 @@ if(sub[c].when===question.correct_answers[c].entries[c].when){
 
 if(question.correct_answers[i].entries[c].Dr){
 
-    if(sub[i].Dr===question.correct_answers[i].entries[c].Dr){
+    if(sub[i][c].Dr===question.correct_answers[i].entries[c].Dr){
         res22[i][c].Dr ='correct';
 
     }else{  res22[i][c].Dr ='incorrect';
@@ -129,9 +147,7 @@ if(((res22[i][c].Cr==='correct')||(res22[i][c].Cr==='correct'))&&(res22[i][c].Cr
 
             }
         }
-     } }));
-
-            
+     } }));   
         }
 
 

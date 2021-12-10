@@ -90,21 +90,22 @@ export default function App() {
 
 
     const updateInput = () => {
+      if(id1){
       for (let n=0; n<Object.keys(questions).length;n++){
-      for (let b=0;b<Object.keys(JSON.parse(questions)[n].correct_answers).length;b++){
-      for (let l=0;l<Object.keys(JSON.parse(questions)[n].correct_answers[b].entries).length;l++){
-      if (id1[0].name === 'date') {
+      for (let b=0;b<Object.keys(questions[n].correct_answers).length;b++){
+      for (let l=0;l<Object.keys(questions[n].correct_answers[b].entries).length;l++){
+      if (id1.name === 'date') {
         submission[n][b][l] = update.slice(2);
-      } else if (id1[0].name === 'type') {
+      } else if (id1.name === 'type') {
         console.log("BALLER");
         submission[n][b][l].type = update;
-      } else if (id1[0].Dr === 'Dr') {
+      } else if (id1.Dr === 'Dr') {
         console.log("BALLER");
 
         submission[n][b][l].Dr = update;
         console.log("BALLER");
 
-      } else if (id1[0].Cr === 'Cr') {
+      } else if (id1.Cr === 'Cr') {
         console.log("BALLER");
 
         submission[n][b][l].Cr = update;
@@ -112,17 +113,16 @@ export default function App() {
 
 
       getSub(submission);
-      getAns(JSON.parse(questions)[n].correct_answers[b]);
+      getAns(questions[n].correct_answers[b]);
       console.log(JSON.stringify(ans));
       console.log(id1.current);
       console.log(sub);
       console.log()
-    }}
+    }}}
 }    };
 
     const submitButton = (e) => {
       e.preventDefault();
-
       var result = '';
       updateInput();
       getRes(result);
