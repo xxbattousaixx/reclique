@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import './App.css';
 import { Button, Container, Row, Col  } from 'react-bootstrap';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import 'jquery/src/jquery';
 import Questions from './Questions';
@@ -21,6 +21,7 @@ export default function App() {
     const [ans,getAns] = useState('');
     const [update, getUpdate] = useState('');
     const inputRef = React.createRef();
+    const containerEndRef = useRef('');
     let id1 = inputRef;
     const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
     var submission = [{
@@ -77,7 +78,9 @@ export default function App() {
       getAllQuestions();
       getPage(p);
     }, [p]);
-
+    const  scrollToBottom = () => {
+      containerEndRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
 
     const getAllQuestions = () => {
       axios.get(baseURL)
@@ -112,19 +115,17 @@ export default function App() {
       } else { console.log("FAIL"); }
 
 
-      getSub(submission);
       getAns(questions[n].correct_answers[b]);
       console.log(JSON.stringify(ans));
       console.log(id1.current);
       console.log(sub);
-      console.log()
     }}}
 }    };
 
     const submitButton = (e) => {
       e.preventDefault();
       var result = '';
-      updateInput();
+      getSub(submission);
       getRes(result);
     };
 
@@ -138,7 +139,6 @@ e.preventDefault();
 
         if ((p >= 0) && (p < questions.length)) {
 
-          getSub(submission);
 
           getPage(p);
           p--;
@@ -161,6 +161,7 @@ e.preventDefault();
 
         if ((p <= questions.length - 1) && (p >= 0)) {
           getPage(p);
+          p++;
         }
       } else if (p === 0) {
 
@@ -215,7 +216,7 @@ e.preventDefault();
 <Container key="boxes" fluid>
 
   
-          <Boxes inputRef={inputRef} updateInput={getUpdate} questions={questions} p={p} />
+          <Boxes inputRef={inputRef} updateInput={updateInput} questions={questions} p={p} />
   
   
    </Container>
