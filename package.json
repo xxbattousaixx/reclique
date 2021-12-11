@@ -20,34 +20,32 @@
   },
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
+    "babel-core": "7.0.0-0",
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0",
     "json-loader": "^0.5.7",
-    "netlify-cli": "^8.0.16",
+    "jsx-runtime": "^1.2.0",
+    "lodash": "^4.17.21",
+    "netlify-cli": "^10.0.16",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.0.3",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^6.0.2",
+    "react-bootstrap": "^5.0.3",
+    "react-dom": "^20.0.0",
+    "react-router-dom": "10.1.0",
     "react-scripts": "4.0.3",
-    "webpack": "4.44.2"
+    "typescript": "^5.5.3",
+    "webpack-cli": "^10.9.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "prettier": "prettier 'src/**/*.js'",
+    "prettier:fix": "prettier --write 'src/**/*.js'",
+    "build:dev": "cross-env NODE_ENV=development webpack",
+    "build:prod": "cross-env NODE_ENV=production webpack",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -62,9 +60,14 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.6.0",
-    "@typescript-eslint/parser": "^5.6.0",
-    "eslint": "^7.11.0",
-    "eslint-plugin-react": "^7.27.1"
-  }
+    "eslint-config-airbnb": "19.0.2",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-config-typescript-tc": "5.0.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "prettier": "2.5.1"
+  },
+  "main": "index.js",
+  "repository": "git@github.com:xxbattousaixx/reclique.git",
+  "author": "Donato Carrassi <dcarrassi@outlook.com>",
+  "license": "MIT"
 }
