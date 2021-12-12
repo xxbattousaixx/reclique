@@ -1,23 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes
-} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from "./Home";
 
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
+
+function App() {
+  return <h1>Hello React Router</h1>;
+}
 
 ReactDOM.render(
-  <Router>
-    <Routes>
-      <Route path="/" element={<App/>}> 
-    </Route>
-    </Routes>
-  </Router>,
-  document.getElementById('root')
-);
+  <BrowserRouter>
+  <Routes><Home /></Routes>
+    
+  </BrowserRouter>,
+  document.querySelector('#root')
 
-
+  );

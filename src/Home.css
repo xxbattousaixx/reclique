@@ -4,14 +4,8 @@
 }
 .answers{
 text-align: center;}
-#qt{
-  width:20%  !important;
-  font-size: 2px !important;
-}
-#results{
-  height: 100%;
-  width:100%
-}
+
+
 #select {
 display: flex;
 flex-direction: column;

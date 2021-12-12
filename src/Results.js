@@ -1,155 +1,109 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable react/prop-types */
+import React from 'react'
+import 'jquery/src/jquery'
+import { Col, Container } from 'react-bootstrap'
 
-import React from 'react';
-import 'jquery/src/jquery';
-import {Row, Col, Container} from 'react-bootstrap';
+// to display results we will need the JSON feed to know answers and compare it against SUB
 
-export default function Results(props){
-
-
+export default function Results(props) {
+    const { questions } = props
+    const { sub } = props
+    const { ans } = props
+    const { res } = props
+    //can only call Hooks here -- you only need RES in order to show the final output...and thats already in state so no hooks anyway
+    let qs = []
 
     const displayResults = (props) => {
-        const {questions} = props;
-        const {sub} = props;
-        var {res} = props;
-        const {page} = props;
+        // the input reference can be accessed at every change -- a changed value will be held inside this variable
+        // var qs = [];
 
-        var qs=[];
-
-        if (sub.length > 0){
- return(questions.map((question,i)=>{
-for(let f=0;f<Object.keys(question.correct_answers).length;f++){
-    qs[f].push({
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''})
-}     
-
-    let res22=[{
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''
-      },
-      {
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''
-    
-      },
-      {
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''
-    
-      },
-      {
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''
-    
-      }];
-    console.log(Object.keys(question.correct_answers[i].entries));
-
-for (let c=0;c<Object.keys(question.correct_answers[c]).length;c++){
-    console.log(Object.keys(question.correct_answers[c].entries));
-    
-    for (let y=0;y<Object.keys(question.correct_answers[i].entries[c]).length;y++){
-        console.log(Object.keys(question.correct_answers[c].entries[y].when));
-        console.log(Object.keys(question.correct_answers[c].entries[y].type));
-        console.log(Object.keys(question.correct_answers[c].entries[y].Dr));
-        console.log(Object.keys(question.correct_answers[c].entries[y].Cr));
-
-
-if(sub[c].when===question.correct_answers[c].entries[c].when){
-    res22[i][c].when ='correct';
-    qs[c].when ='correct';
-}else{   res22[c].when ='incorrect';}
-
-    if(sub[i].type===question.correct_answers[c].entries[c].type){
-        res22[i][c].type ='correct';
-    qs[c].type ='correct';
-
-    }else{   res22[i][c].type ='incorrect';}
-
-if(question.correct_answers[i].entries[c].Dr){
-
-    if(sub[i].Dr===question.correct_answers[i].entries[c].Dr){
-        res22[i][c].Dr ='correct';
-
-    }else{  res22[i][c].Dr ='incorrect';
-}
-
-}else{
-    if(sub[i].Cr===question.correct_answers[i].entries[clearInterval].Cr){
-        res22[i][c].Cr ='correct';
-
-    }
-else{    res22[i][c].Cr ='incorrect';
-}
-if(((res22[i][c].Cr==='correct')||(res22[i][c].Cr==='correct'))&&(res22[i][c].Cr==='correct')&&(res22[i][c].Cr==='correct')){
-    qs[i][c]='correct';
-
-}                // if (i===page){
-             
-
-                 
-                    return(
-                        <Container key="overview" fluid>
-
-
-                        <div className='answers' id="results" key={i}>
-                            
-                            <h4 key='n5' className='qt'>{JSON.stringify(sub[{i}])}</h4> 
-                            <h4 key='n6' className='qt'>{qs[{i}][{c}]}</h4> 
-                            <h4 key='n7' className='qt'>{question.correct_answers[{c}].entries[{y}]}</h4> 
-
-                            <h4 key='n9' className='qt'>{res22.map((row,i)=>{
-                        return(<Col key='col${i}' xs={2} md={2} lg={2} sm={2}><div>
-<h4>Date--<br/> Answer: {row[{c}].entries[{y}].when}<br/> vs. <br/> Your answer: {sub[{i}].when}</h4>
-<h4>Type--<br/> Answer: {row[{c}].entries[{y}].type}<br/> vs. <br/> Your answer: {(sub[{i}].type)}</h4>
-<h4>Dr--<br/> Answer: {row[{c}].entries[{y}].Dr}<br/> vs.<br/> Your answer: {sub[{i}].Dr}</h4>
-<h4>Cr--<br/> Answer: {row[{c}].entries[{y}].Cr}<br/> vs.<br/> Your answer: {sub[{i}].Cr}</h4>
-
-                        </div></Col>)})}</h4>
-                            <br/>
-                            <br/><br/>
-                            <h4></h4>         
-                             </div>  </Container>
+        return questions.map((question, i) => {
+            const res22 = []
+            // questions
+            for (let c = 0; c < Object.keys(questions).length - 1; c++) {
+                res22.push([c])
+                qs.push([c])
+                // entry #
+                for (
+                    let y = 0;
+                    y <
+                    Object.keys(question.correct_answers.entries).length - 1;
+                    y++
+                ) {
+                    // empty res at every entry -- corrects/incorrects live in q[]
+                    // getRes();
+                    return (
+                        <>
+                            <Col key="col${y}" xs={3} md={3} lg={3} sm={3}>
+                                <p key="${y}" className="qt">
+                                    {res}
+                                </p>
+                                <p>{q[c]}</p>
+                                <br />
+                            </Col>
+                            <Col key="col${c}" xs={1} md={1} lg={1} sm={1} />
+                        </>
                     )
-                // }else{
-                //     return('');
-                // }
+                }
+                res22[c].push([])
+                let q = []
 
+                // populate response22 @ each row - update res
 
+                //CHECK YOUR SUBMISSION AGAINST EVERY POSSIBLE CORRECT ANSWER
+                return (
+                    <Container key="overview" fluid>
+                        <h4 key="n9" className="qt">
+                            <Col key="col${y}" xs={3} md={3} lg={3} sm={3}>
+                                <p key="${y}" className="qt">
+                                    Question #{i} --
+                                    {res[i]}
+                                </p>
+                                <br />
+                            </Col>
+                            <Col key="col${c}" xs={1} md={1} lg={1} sm={1} />
+                            {ans.map((ce, i) => (
+                                <Col key="col${i}" xs={2} md={2} lg={2} sm={2}>
+                                    <div>
+                                        <h4>
+                                            Date--
+                                            <br /> Answer:
+                                            {ce}
+                                            <br /> vs.
+                                            <br /> Your answer: {sub[i].when}
+                                        </h4>
+                                        <h4>
+                                            Type--
+                                            <br /> Answer:
+                                            {ce.type}
+                                            <br /> vs.
+                                            <br /> Your answer: {sub[i].type}
+                                        </h4>
+                                        <h4>
+                                            Dr--
+                                            <br /> Answer:
+                                            {ce.Dr}
+                                            <br /> vs.
+                                            <br /> Your answer:
+                                            {sub[i].Dr}
+                                        </h4>
+                                        <h4>
+                                            Cr--
+                                            <br /> Answer:
+                                            {ce.cr}
+                                            <br /> vs.
+                                            <br /> Your answer:
+                                            {sub[i].Cr}
+                                        </h4>
+                                    </div>
+                                </Col>
+                            ))}
+                        </h4>
+                        <br />
+                    </Container>
+                )
             }
-        }
-     } }));
-
-            
-        }
-
-
-
-             else {
-            return (<h3>No Questions</h3>);
-
-
-
-
-
-        }
+        })
     }
 
-return (
-    <>
-    {displayResults(props)}
-    </>
-)
-
+    return <>{displayResults(props)}</>
 }

@@ -1,72 +1,97 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable react/prop-types */
-import React from 'react';
-import 'jquery/src/jquery';
-import {Col, Form} from 'react-bootstrap';
+import React from 'react'
+import 'jquery/src/jquery'
+import { Row, Col, Form } from 'react-bootstrap'
 
+export default function Boxes(props) {
+    const { questions } = props
+    const { getD1 } = props
+    const { getT1 } = props
+    const { getDr1 } = props
+    const { getCr1 } = props
 
-export default function Boxes(props){
-
-
-    const {questions} = props;
-    const {updateInput} = props;
-    const {p} = props;
     const displayBoxes = (props) => {
-    let g =1;
-    let z = 0;
-    
+        return questions.map((q) => {
+            for (
+                let b = 0;
+                b < Object.keys(q.correct_answers).length - 1;
+                b++
+            ) {
+                // cycle through the total number of entries ~
+                for (
+                    let a = 0;
+                    a < Object.keys(q.correct_answers[b]).length - 1;
+                    a++
+                ) {
+                    // assign the longest entry length for this question to g
+                    if (a > g) {
+                        g = a
+                    }
+                }
+            }
 
+            for (let c = 0; c < g; c++) {
+                return (
+                    <>
+                        <Row key="row1${i}" xs={3} md={3} lg={3} sm={3}>
+                            <Col key="col2${i}" xs={3} md={3} lg={3} sm={3}>
+                                <Form.Control
+                                    key="date${i}"
+                                    name="date"
+                                    value=""
+                                    type="date"
+                                    onChange={(e) => getD1(e.target.value)}
+                                />
+                            </Col>
+                            <Col key="col3${i}" xs={3} md={3} lg={3} sm={3}>
+                                <Form.Select
+                                    key="type${i}"
+                                    name="type"
+                                    defaultValue=""
+                                    onChange={(e) => getT1(e.target.value)}
+                                >
+                                    <option />
+                                    <option>revenue</option>
+                                    <option>deferred</option>
+                                    <option>cash</option>
+                                    <option>receivable</option>
+                                    <option>contra</option>
+                                    <option>system-credit</option>
+                                </Form.Select>
+                            </Col>{' '}
+                            <Col key="col4${i}" xs={3} md={3} lg={3} sm={3}>
+                                <Form.Control
+                                    key="dr${i}"
+                                    name="Dr"
+                                    onChange={(e) => getDr1(e.target.value)}
+                                    defaultValue=""
+                                    type="text"
+                                    placeholder="$$$"
+                                />
+                            </Col>
+                            <Col
+                                key="col5${i}"
+                                xs={3}
+                                md={3}
+                                lg={3}
+                                sm={3}
+                                id="vl"
+                            >
+                                <Form.Control
+                                    key="cr${i}"
+                                    name="Cr"
+                                    onChange={(e) => getCr1(e.target.value)}
+                                    defaultValue=""
+                                    type="text"
+                                    placeholder="$$$"
+                                />
+                            </Col>
+                        </Row>
+                    </>
+                )
+            }
+            return <></>
+        })
+    }
 
-            console.log(Object.keys(JSON.parse(questions)[{p}].correct_answers[{g}].entries));
-                    
-                    <div id="box" key={'box${p}'} className='b'>
-                   {Object.keys(JSON.parse(questions)[{p}].correct_answers[{g}].entries.map((q,i)=>{
-
-
-for(z=0;z<Object.keys(q.correct_answers[p].entries[i]).length;z++)
-                       {
-                        return(<Col key='col${i}' xs={2} md={2} lg={2} sm={2}>
-                        <Col key={'col${Object.keys(a).length}'} xs={3} md={3} lg={3} sm={3} ><Form.Control ref={props.inputRef} key={'date${i}'} name='date' value=''  type="date" onChange={updateInput}/> </Col>< Col key={'col${Object.keys(a).length}'} xs={3} md={3} lg={3} sm={3} >    <Form.Select key={'type${i}'} name='type' defaultValue=''  onChange={updateInput}> 
-                        <option></option>
-                            <option>revenue</option>
-                            <option>deferred</option>
-                            <option>cash</option>
-                            <option>receivable</option>
-                            <option>contra</option>
-                            <option>system-credit</option>
-                          </Form.Select></Col>
-                           < Col key={'col${Object.keys(a).length}'} xs={3} md={3} lg={3} sm={3} >  <Form.Control key={'dr${i}'}   name="Dr" onChange={updateInput} defaultValue='' type="text" placeholder="$$$" />
-                          </Col><Col key={'col${Object.keys(a).length}'} xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control  key={'cr${i}'}  name="Cr" onChange={updateInput} defaultValue='' type="text" placeholder="$$$" />
-                          </Col>
-                        </Col>)
-                    
-                    
-                    }}))}
-                    </div>
-                    
-                    z++;
-                
-                    g++;
-
-
-            
-                
-                
-                
-
-            
-
-
-
-}
-
-
-    
-return (
-    <>
-    {displayBoxes(props)};
-    </>
-)
-
+    return <>{displayBoxes(props)}</>
 }
