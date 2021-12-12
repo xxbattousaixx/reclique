@@ -12,11 +12,36 @@ import Boxes from './Boxes.js'
 export default function Home() {
     const [page, getPage] = useState('');
     const [update, getUpdate] = useState('');
-    
     const [sub, getSub] = useState('');
     const [res, getRes] = useState('');
     const [ans, getAns] = useState('');
     const [questions, getQuestions] = useState('');
+   let d1='';
+   let t1='';
+   let dr1 =0;
+   let cr1 = 0;
+
+
+
+
+    const getVald1 = (e, props) =>{
+        let  val= e.target.value;
+        d1=val; 
+       }
+       const getValt1 = (e, props) =>{
+        let  val= e.target.value;
+        t1=val; 
+       }
+       const getValdr1 = (e, props) =>{
+        let  val= e.target.value;
+        dr1=val; 
+       }
+       const getValcr1 = (e, props) =>{
+        let  val= e.target.value;
+     cr1=val; 
+       }
+
+    
         let qs = ans
         let q = sub
         let p = 0
@@ -125,14 +150,7 @@ export default function Home() {
     
         //CALL HOOK -- updates entry when adequate and provides it --> getUpdate at SUB, and getAnswers()
         const onNext = (props) => {
-            const {getUpdate} = props;
-            const {getAns}=props;
-            const {getPage}=props;
-            const {d1}=props;
-            const {t1}=props;
-            const {dr1}=props;
-            const {cr1}=props;
-    
+          
             if (p < questions.length - 1) {
                 p++
     
@@ -173,17 +191,13 @@ export default function Home() {
         }
         //CALL HOOK -- update current entry if adequate --> getUpdate at SUB, and getAnswers()
         const onPrev = (props) => {
-            const {getUpdate} = props;
-            const {getAns}=props;
-            const {d1}=props;
-            const {t1}=props;
-            const {dr1}=props;
-            const {cr1}=props;
+        
             if (p > 0) {
                 p--
-    
+
                 if (p <= questions.length - 1 && p >= 0) {
-                    d1=
+                 
+                    
                     //every time we success hit to a different question, answer will become populated at each entry-level... this is a good time to populate RES
                     getUpdate({
                         'when': d1,
@@ -198,7 +212,7 @@ export default function Home() {
                         //e will be an integer value
                 let h=[];
                 let ii=0;
-                h.push( [{
+                h.push( {
                            ii: {
                                 i: {
                                     'when': e.when,
@@ -206,7 +220,7 @@ export default function Home() {
                                     'Dr': e.Dr1,
                                     'Cr': e.Cr1,
                                 }}}
-                             ] );
+                            );
                             ii++;
 
         return(h)
@@ -220,7 +234,7 @@ export default function Home() {
     
     
         
-        )
+        
     }
     
                     
@@ -274,10 +288,10 @@ export default function Home() {
                     <div id="box" className="b">
                         <Boxes
                             questions={questions}
-                            getD1={getD1}
-                            getT1={getT1}
-                            getdr1={getDr1}
-                            getCr1={getCr1}
+                            getVald1={getVald1}
+                            getValt1={getValt1}
+                            getValdr1={getValdr1}
+                            getValcr1={getValcr1}
                         />
                     </div>
                 </Container>

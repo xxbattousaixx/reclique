@@ -4,7 +4,12 @@ import { Row, Col, Form } from 'react-bootstrap'
 
 export default function Boxes(props) {
     const { questions } = props
-  
+    const {getVald1} = props;
+    const {getValt1} = props;
+    const {getValdr1} = props;
+    const {getValcr1} = props;
+
+    
     let g =2;
     const displayBoxes = (props) => {
         return questions.map((q) => {
@@ -32,18 +37,18 @@ export default function Boxes(props) {
                         <Row xs={3} md={3} lg={3} sm={3}>
                             <Col xs={3} md={3} lg={3} sm={3}>
                                 <Form.Control
-                                    name="date"
+                                    id="when"
                                     value=""
                                     type="date"
-                                    onChange={(e) => this.value=e.target.value}
+                                    onChange={getVald1}
                                 />
                             </Col>
                             <Col xs={3} md={3} lg={3} sm={3}>
                                 <Form.Select
-                                    name="type"
+                                    id="type"
                                     value=""
                                     defaultValue=""
-                                    onChange={(e) => getT1(this.value=e.target.value)}
+                                    onChange={getValt1}
                                 >
                                     <option />
                                     <option>revenue</option>
@@ -56,9 +61,9 @@ export default function Boxes(props) {
                             </Col>{' '}
                             <Col  xs={3} md={3} lg={3} sm={3}>
                                 <Form.Control
-                                    name="Dr"
+                                    id="Dr"
                                     value=""
-                                    onChange={(e) => getDr1(this.value=e.target.value)}
+                                    onChange={getValdr1}
                                     defaultValue=""
                                     type="text"
                                     placeholder="$$$"
@@ -72,8 +77,8 @@ export default function Boxes(props) {
                                 id="vl"
                             >
                                 <Form.Control
-                                    name="Cr"
-                                    onChange={(e) => getCr1(this.value=e.target.value)}
+                                    id="Cr"
+                                    onChange={getValcr1}
                                     defaultValue=""
                                     type="text"
                                     value=""
