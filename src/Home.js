@@ -10,10 +10,6 @@ import Boxes from './Boxes.js'
 
 // this input reference will be placed in the active input (onChange)
 export default function Home() {
-    const [d1, getD1] = useState('');
-    const [t1, getT1] = useState('')
-    const [dr1, getDr1] = useState('');
-    const [cr1, getCr1] = useState('');
     const [page, getPage] = useState('');
     const [update, getUpdate] = useState('');
     
@@ -187,6 +183,7 @@ export default function Home() {
                 p--
     
                 if (p <= questions.length - 1 && p >= 0) {
+                    d1=
                     //every time we success hit to a different question, answer will become populated at each entry-level... this is a good time to populate RES
                     getUpdate({
                         'when': d1,
@@ -220,7 +217,10 @@ export default function Home() {
                 // getPage(p);
             }
         }
-        //CALL HOOK -- updates the results that will be shown. Gets the current submission, which consists of the actual value at each box
+    
+    
+        
+        )
     }
     
                     

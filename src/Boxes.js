@@ -4,10 +4,7 @@ import { Row, Col, Form } from 'react-bootstrap'
 
 export default function Boxes(props) {
     const { questions } = props
-    const { getD1 } = props
-    const { getT1 } = props
-    const { getDr1 } = props
-    const { getCr1 } = props
+  
     let g =2;
     const displayBoxes = (props) => {
         return questions.map((q) => {
@@ -38,7 +35,7 @@ export default function Boxes(props) {
                                     name="date"
                                     value=""
                                     type="date"
-                                    onChange={(e) => getD1(e.target.value)}
+                                    onChange={(e) => this.value=e.target.value}
                                 />
                             </Col>
                             <Col xs={3} md={3} lg={3} sm={3}>
@@ -46,7 +43,7 @@ export default function Boxes(props) {
                                     name="type"
                                     value=""
                                     defaultValue=""
-                                    onChange={(e) => getT1(e.target.value)}
+                                    onChange={(e) => getT1(this.value=e.target.value)}
                                 >
                                     <option />
                                     <option>revenue</option>
@@ -61,7 +58,7 @@ export default function Boxes(props) {
                                 <Form.Control
                                     name="Dr"
                                     value=""
-                                    onChange={(e) => getDr1(e.target.value)}
+                                    onChange={(e) => getDr1(this.value=e.target.value)}
                                     defaultValue=""
                                     type="text"
                                     placeholder="$$$"
@@ -76,7 +73,7 @@ export default function Boxes(props) {
                             >
                                 <Form.Control
                                     name="Cr"
-                                    onChange={(e) => getCr1(e.target.value)}
+                                    onChange={(e) => getCr1(this.value=e.target.value)}
                                     defaultValue=""
                                     type="text"
                                     value=""

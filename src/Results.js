@@ -10,7 +10,6 @@ export default function Results(props) {
 const { sub } = props
 const { ans } = props
 const { res } = props
-const {page} = props;
 
     //can only call Hooks here -- you only need RES in order to show the final output...and thats already in state so no hooks anyway
     let qs = []
