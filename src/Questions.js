@@ -1,3 +1,4 @@
+
 import React from 'react'
 import 'jquery/src/jquery'
 
@@ -12,9 +13,9 @@ export default function Questions(props) {
                 console.log(question)
 
                 return (
-                    <div id="cq" key="q${i}">
-                        <h1 key="title${i}">{question.title}</h1>
-                        <h3 key="desc${i}">{question.description}</h3>
+                    <div id="cq">
+                        <h1>{question.title}</h1>
+                        <h3>{question.description}</h3>
                     </div>
                 )
             }

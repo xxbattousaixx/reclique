@@ -1,18 +1,19 @@
-import Home from "./Home";
-
 import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router, Route
+ 
+} from "react-router-dom";
+import Home from "./Home.js";
 
-function App() {
-  return <h1>Hello React Router</h1>;
-}
 
-ReactDOM.render(
-  <BrowserRouter>
-  <Routes><Home /></Routes>
-    
-  </BrowserRouter>,
-  document.querySelector('#root')
 
-  );
+export default function App() {
+  return (
+   <Router>
+      <Route path="/home">
+        <Home />
+      </Route>
+    </Router>,
+Document.querySelector('#root'))
+
+  }
