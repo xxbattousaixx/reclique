@@ -20,12 +20,7 @@ width:100%;
   border-bottom: 3px solid black;
 }
 
-#cq{
-  position:fixed-top;
-}
-#cf{
-  position:fixed-bottom;
-}
+
 #con1{
   height: 100vh;
   width:100vw;

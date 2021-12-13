@@ -3,28 +3,49 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@babel/preset-react": "^7.16.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.24.0",
+    "babel-cli": "6.24.1",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1",
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0",
     "json-loader": "^0.5.7",
     "netlify-cli": "^8.0.6",
+    "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.3",
-    "react-dom": "^18.0.0-rc.0-next-3b3daf557-20211210",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^6.0.0-beta.8",
-    "react-scripts": "4.0.3"
+    "webpack": "^5.65.0",
+    "webpack-dev-server": "^4.6.0"
   },
-  "homepage": ".",
+  "homepage": "./src/",
+  "devDependencies": {
+    "babel-core": "6.25.0",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "babel-preset-stage-0": "^6.0.15",
+    "react-scripts": "^5.0.0-next.58",
+    "webpack": "^1.9.6",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3000",
   "eslintConfig": {
     "extends": [
       "react-app",

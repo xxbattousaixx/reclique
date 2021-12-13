@@ -2,7 +2,7 @@ import React from 'react'
 import 'jquery/src/jquery'
 import { Row, Col, Form } from 'react-bootstrap'
 
-export default function Boxes(props) {
+function Boxes(props) {
     const { questions } = props
     const {getVald1} = props;
     const {getValt1} = props;
@@ -15,13 +15,13 @@ export default function Boxes(props) {
         return questions.map((q) => {
             for (
                 let b = 0;
-                b < Object.keys(q.correct_answers).length - 1;
+                b < q.correct_answers.length - 1;
                 b++
             ) {
                 // cycle through the total number of entries ~
                 for (
                     let a = 0;
-                    a < Object.keys(q.correct_answers[b]).length - 1;
+                    a < q.correct_answers[b].length - 1;
                     a++
                 ) {
                     // assign the longest entry length for this question to g
@@ -38,7 +38,7 @@ export default function Boxes(props) {
                             <Col xs={3} md={3} lg={3} sm={3}>
                                 <Form.Control
                                     id="when"
-                                    value=""
+                                    
                                     type="date"
                                     onChange={getVald1}
                                 />
@@ -46,8 +46,8 @@ export default function Boxes(props) {
                             <Col xs={3} md={3} lg={3} sm={3}>
                                 <Form.Select
                                     id="type"
-                                    value=""
-                                    defaultValue=""
+                                    
+                                    
                                     onChange={getValt1}
                                 >
                                     <option />
@@ -62,9 +62,9 @@ export default function Boxes(props) {
                             <Col  xs={3} md={3} lg={3} sm={3}>
                                 <Form.Control
                                     id="Dr"
-                                    value=""
+                                    
                                     onChange={getValdr1}
-                                    defaultValue=""
+                                    
                                     type="text"
                                     placeholder="$$$"
                                 />
@@ -79,9 +79,8 @@ export default function Boxes(props) {
                                 <Form.Control
                                     id="Cr"
                                     onChange={getValcr1}
-                                    defaultValue=""
                                     type="text"
-                                    value=""
+                                    
                                     placeholder="$$$"
                                 />
                             </Col>
@@ -95,3 +94,4 @@ export default function Boxes(props) {
 
     return <>{displayBoxes(props)}</>
 }
+export default Boxes;

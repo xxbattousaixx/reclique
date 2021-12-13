@@ -5,7 +5,7 @@ import { Col, Container } from 'react-bootstrap'
 
 // to display results we will need the JSON feed to know answers and compare it against SUB
 
-export default function Results(props) {
+ function Results(props) {
     const { questions } = props
 const { sub } = props
 const { ans } = props
@@ -31,13 +31,13 @@ const { res } = props
         const temp = []
         const temp2 = []
         // cycle through each question n ~ for every question there are a number of possible answers....
-        for (let n = 0; n < Object.keys(sub).length - 1; n++) {
+        for (let n = 0; n < sub.length - 1; n++) {
             // cycle through each correct answer for this question ~ submissions are correct if they match any of these....
             // possible answer array
             temp.push([])
             // submission array
             temp2.push([])
-            for (let b = 0; b < Object.keys(ans[n]).length - 1; b++) {
+            for (let b = 0; b < Object.keys(ans[n].length) - 1; b++) {
                 temp[n] = questions[n].correct_answers.entries
             
             // push every answers on this page into a comparison updater~~
@@ -51,7 +51,7 @@ const { res } = props
             for (
                 let a = 0;
                 a <
-                Object.keys(questions[n].correct_answers[b].entries).length - 1;
+                questions[n].correct_answers[b].entries.length - 1;
                 a++) {
                 // now you can use n,b,a to populate a temporary array with correct/incorrect at each given submission vs answer given
                 temp[n][b] = questions[n].correct_answers.entries[b]
@@ -71,14 +71,14 @@ const { res } = props
             let q = []
 
             // questions
-            for (let c = 0; c < Object.keys(question).length - 1; c++) {
+            for (let c = 0; c < question.length - 1; c++) {
                 res22.push([c])
                 qs.push([c])
                 // entry #
                 for (
                     let y = 0;
                     y <
-                    Object.keys(question.correct_answers.entries).length - 1;
+                    question.correct_answers.entries.length - 1;
                     y++
                 ) {
                     // empty res at every entry -- corrects/incorrects live in q[]
@@ -163,3 +163,4 @@ const { res } = props
 
     return <>{displayResults(props)}</>
 }
+export default Results;
