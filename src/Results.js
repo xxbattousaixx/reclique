@@ -1,7 +1,7 @@
-
+import { Link, animateScroll as scroll } from "react-scroll";
+import { Button, Container, Row, Col } from 'react-bootstrap'
 import React from 'react'
 import 'jquery/src/jquery'
-import { Col, Container } from 'react-bootstrap'
 
 // to display results we will need the JSON feed to know answers and compare it against SUB
 
@@ -10,6 +10,7 @@ import { Col, Container } from 'react-bootstrap'
 const { sub } = props
 const { ans } = props
 const { res } = props
+const {submitButton}=props
 
     //can only call Hooks here -- you only need RES in order to show the final output...and thats already in state so no hooks anyway
     let qs = []
@@ -103,6 +104,28 @@ const { res } = props
                 //CHECK YOUR SUBMISSION AGAINST EVERY POSSIBLE CORRECT ANSWER
                 return (
                     <Container fluid>
+
+                    <Row xs={12} md={12} lg={12} sm={12}>
+                    <Col xs={4} md={4} lg={4} sm={4}>
+                        </Col>
+                        
+                        <Col xs={2} md={2} lg={2} sm={2}>
+                        <div onClick={scroll.scrollToBottom}> <Button onClick={submitButton}>Submit</Button> </div>   
+                        </Col>
+                        <Col xs={4} md={4} lg={4} sm={4}>
+                    </Col>
+                    
+
+                    </Row>
+                    <br />
+
+                    <br />
+                    <hr />
+                    <br />
+
+                    <br />
+                    <div id="containerEndRef" />
+                    <br />
                         <h4 className="qt">
                             <Col xs={3} md={3} lg={3} sm={3}>
                                 <p className="qt">
@@ -161,6 +184,28 @@ const { res } = props
 
     }
 
-    return <>{displayResults(props)}</>
+    return <>
+    <Row xs={12} md={12} lg={12} sm={12}>
+   <Col xs={4} md={4} lg={4} sm={4}>
+       </Col>
+       
+       <Col xs={2} md={2} lg={2} sm={2}>
+       <div onClick={scroll.scrollToBottom}> <Button onClick={submitButton}>Submit</Button> </div>   
+       </Col>
+       <Col xs={4} md={4} lg={4} sm={4}>
+   </Col>
+   
+
+   </Row>
+   <br />
+
+   <br />
+   <hr />
+   <br />
+
+   <br />
+   <div id="containerEndRef" />
+   <br />
+    {displayResults(props)}</>
 }
 export default Results;

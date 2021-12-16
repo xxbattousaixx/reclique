@@ -5,6 +5,7 @@ import 'jquery/src/jquery'
 function Questions(props) {
     const { questions } = props
     const { page } = props
+    
     const displayQuestions = (props) =>{
    return     questions.map((question, i) => {
             if (i === page) {
@@ -14,8 +15,8 @@ function Questions(props) {
 
                 return (
                     <div>
-                        <h1>{question.title}</h1>
-                        <h3>{question.description}</h3>
+                        <h1 key={page}>{question.title}</h1>
+                        <h3 key={i+1}>{question.description}</h3>
                     </div>
                 )
             }

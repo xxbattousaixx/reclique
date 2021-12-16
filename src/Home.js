@@ -7,55 +7,80 @@ import Questions from './Questions.js'
 import Results from './Results.js'
 import Boxes from './Boxes.js'
 import props from 'prop-types';
+import { Link, animateScroll as scroll } from "react-scroll";
+
 
 // this input reference will be placed in the active input (onChange)
  function Home() {
-    const [page, getPage] = useState('');
-    const [update, getUpdate] = useState({});
-    const [sub, getSub] = useState('');
+     const [update, getUpdate] = useState([]);
+    const [page, getPage] = useState(0);
+    const [sub, getSub] = useState([]);
     const [res, getRes] = useState([]);
-    const [ans, getAns] = useState({});
+    const [ans, getAns] = useState('');
     const [questions, getQuestions] = useState([]);
-   const [d1, getD1]=useState('');
-   const [t1, getT1]=useState('');
-   const [dr1, getDr]=useState('');
-   const [cr1, getCr]=useState('');
+   const [d1, getD1]=useState([]);
+   const [t1, getT1]=useState([]);
+   const [dr1, getDr]=useState([]);
+   const [cr1, getCr]=useState([]);
    let p = 0;
 
-   const getVald1 = (e,getD1) =>    
+
+   let qs = ans
+   let q = sub
+   const baseURL ='https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json';
+ 
+ 
+ 
+let ci=0;
+
+let lastIndex = (questions.map((a,i)=>{ci++;return(ci-1);}));
+
+
+   const getVald1 = (e) =>    
    {
-    //    const {getD1}=props;
-       let  val= e.target.value;
-       getD1(val); 
+       const {getD1}=props;
+       let  val= []
+       val[e.target.key]=e.target.value.slice(2,5);
+       if(!d1){getD1(val)}else{d1.splice(e.target.index,0,val);}; 
+       getD1(val.reverse());
       };
-      const getValt1 = (e, getT1) =>{
+      const getValt1 = (e) =>{
     //    const {getT1}=props;
 
-       let  val= e.target.value;
-       
-       getT1(val); 
-      };
+    const {getT1}=props;
+    let  val= []
+    val[e.target.key]=e.target.value;
+    if(!t1){getT1(val)}else{t1.splice(e.target.index,0,val);};
+    getT1(val.reverse());
+      
+};
       const getValdr1 = (e, getDr) =>{
     //    const {getDr}=props;
 
-       let  val= e.target.value;
-       getDr(val); 
-      
-   
+ 
+    const {getDr1}=props;
+    let  val= []
+    val[e.target.key]=(e.target.value);
+    if(!dr1){getDr1(val)}else{dr1.splice(e.target.index,0,val);};
+    getDr1(val.reverse());
+
    }
       const getValcr1 = (e, getCr) =>{
         // const {getCr}=props;
 
-       let  val= e.target.value;
-       getCr(val); 
+       
+    const {getCr1}=props;
+    let  val= []
+    val[e.target.key]=e.target.value;
+    if(!cr1){getCr1(val)}else{cr1.splice(e.target.index,0,val);};
+    getCr1(val.reverse());
+
       }
 
    
 
-
-        let qs = ans
-        let q = sub
-        const baseURL ='https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json';
+      
+      
         const getAllQuestions = () => {
             axios.get(baseURL).then((response) => {
                     const allQuestions = JSON.parse(JSON.stringify(response.data));
@@ -77,32 +102,96 @@ import props from 'prop-types';
             getPage(p)
         }, [p]);
            //function to autoscroll on result render
-           const submitButton = (props) => {
-            const{page}=props;
-            const {getSub}=props;
-    let h = [];
+const submitButton = (props) => {
+            const {page}=props;
+            const {ans}=props
+            const {update}=props;
+            const {getD1, getT1, getDr, getCr} = props;
+            let pk = [];
 
 
-            for(let j=0;j<update.length;j++){
+
+
+
+    let ds = [];
+    let ts = [];
+    let drs = [];
+    let crs = [];
+
+    // , 'type': update[j].type, 'Dr': update[j].dr1, 'Cr': update[j].cr1 
+if (update){
+
+console.log(update);
+console.log(sub);
+console.log(ans);
+            for(let j=0;j<update.length();j++){
                     //e will be an integer value
-                    h.push(
-                        {
-                            j: { 'when': update.when, 'type': update.type, 'Dr': update.dr1, 'Cr': update.cr1 },
-                        }
+                    ds.splice(j,0,
+                        
+                        { 'when': update[j].when},
+                        
                       );
-                    };    
-                    getSub(h);    
+                       
+                   
+                        
+                              
+                            };
+                                              for(let a=0;a<update.length();a++){
+                                //e will be an integer value
+                                ts.splice(a,0,
+                                    
+                                    { 'when': update[a].type},
+                                    
+                                  );
+                                };   
+                                for(let r=0;r<update.length();r++){
+                                    //e will be an integer value
+                                    drs.splice(r,0,
+                                        
+                                        { 'when': update[r].Dr},
+                                        
+                            
+                                    );   
+                                };
 
-                    
+                                    for(let u=0;u<update.length();u++){
+                                       //e will be an integer value
+                                       crs.splice(u,0,
+                                           
+                                           { 'when': update[u].Cr},
+                                           
+                                         );
+                                      
+                                        };                                         
+                                        
+                            getD1(ts);  
+
+                            getT1(ts);  
+                            getCr(ts);  
+                            getDr(ts);  
+
+
+                            pk.push(cr1)
+                            pk.push(dr1)
+                            pk.push(t1)
+                            pk.push(d1);
+                            
+                        }
+     
             //every time we submit, sub will become populated at each entry-level... -- this is a good time to populate RES ..  --
-    
             //will have to place qs inside with a 3D JSON array mapping -- of your answers at every entry vs. all possible answers.. --
+           
+           
             getRes(
                 questions.map((entry, i) => {
-                    for (let c = 0; c < questions.length - 1; c++) {
+                    let pp1=0
+                    pp1 =                 entry.correct_answers.map((a,i)=>{pp1++;return(pp1-1);});
+
+                    for (let c = 0; c <pp1; c++) {
+
                         for (
                             let y = 0;
-                            y < Object.keys(questions[page].correct_answers.entries[i]).length- 1;
+                            y < pp1;
                             y++
                         ) {
                            
@@ -142,110 +231,18 @@ import props from 'prop-types';
                                 }
                             }
     
-                            // if (i===page){
                         }
                     }
                     return(qs);
                 })
             )
-    
-            scrollToBottom()
+            let iii=page;
+       
         }
         //function to scroll on result render
-        const scrollToBottom = () => {
-            Results.scrollIntoView({ behavior: 'smooth' })
-        }
-    
-        //CALL HOOK -- updates entry when adequate and provides it --> getUpdate at SUB, and getAnswers()
-        const onNext = (props) => {
-            const {questions}=props;
-            const {t1,d1,cr1,dr1}=props;
-            const {getUpdate}=props
-            const {getAns}=props;
-            
-            if (p < Object.keys(questions).length - 1) {
-                p++;
-    
-                if (p >= 0 && p < Object.keys(questions).length) {
-                    
-                    getUpdate({
-                        'when': d1,
-                        'type': t1,
-                        'Dr': dr1,
-                        'Cr': cr1,
-                    });
-    
       
-                    let hh=[];
-                    questions.map((e, i) => {
-                        //e will be an integer value
-                hh.push( {
-                           'correct_answers': {
-                                i: {
-                             'when': e.correct_answers[1].entries[i].when,
-                             'type': e.correct_answers[1].entries[i].type,
-                             'Dr': e.correct_answers[1].entries[i].Dr1,
-                             'Cr': e.correct_answers[1].entries[i].Cr1,
-                                }}}
-                              );
-                              
-                        return(hh)
-                                               }                   );
-           getAns(hh,[]);
-           getPage(p);
-        } else if (p === questions.length - 1) {
-                getPage(p);
-            }}
-        };
-        //CALL HOOK -- update current entry if adequate --> getUpdate at SUB, and getAnswers()
-        const onPrev = (props) => {
-            const {questions}=props;
-            const {t1,d1,cr1,dr1}=props;
-            const {getUpdate}=props
-            const {getAns}=props;
-            if (p > 0) {
-                p--;
-
-                if (p <= Object.keys(questions).length - 1 && p >= 0) {
-                 
-                    
-                    //every time we success hit to a different question, answer will become populated at each entry-level... this is a good time to populate RES
-                    getUpdate({
-                        'when': d1,
-                        'type': t1,
-                        'Dr': dr1,
-                        'Cr': cr1,
-                    },[]);
-                
-               
-                
-                    let h=[];
-               
-                    questions.map((e, i) => {
-                        //e will be an integer value
-                h.push( {
-                    'correct_answers': {
-                         i: {
-                             'when': e.correct_answers[1].entries[i].when,
-                             'type': e.correct_answers[1].entries[i].type,
-                             'Dr': e.correct_answers[1].entries[i].Dr1,
-                             'Cr': e.correct_answers[1].entries[i].Cr1,
-                                }}}
-                              );
-                              
-                        return(h)
-                                               })
-                                               getAns(h,[]);
-                getPage(p);
-                                               
-                                               
-            } else if (p === 0) {
-                getPage(p);
-            }
+    
         
-        }
-        };   
-                    
         
         // function that will grab JSON with the use of axios
       
@@ -295,6 +292,11 @@ import props from 'prop-types';
                 <Container fluid>
                     <div id="box" className="b">
                         <Boxes
+                        getUpdate={getUpdate}
+                        getAns={getAns}
+                            page={page}
+                            getPage={getPage}
+
                             questions={questions}
                             getValD1={getVald1}
                             getValT1={getValt1}
@@ -302,51 +304,11 @@ import props from 'prop-types';
                             getValcr={getValcr1}/>
                     </div>
                 </Container>
-                <br />
-
-                <br />
-                <hr />
-                <br />
-                <br />
+               
                 <Container fluid>
-                    <Row xs={4} md={4} lg={4} sm={4}>
-                        <Col xs={2} md={2} lg={2} sm={2} />
-                        <Col xs={4} md={4} lg={4} sm={4}>
-                            <Button onClick={onPrev}>Previous</Button>
-                        </Col>
-                        <Col xs={4} md={4} lg={4} sm={4}>
-                            <Button onClick={onNext}>Next</Button>
-                        </Col>
-                        <Col xs={2} md={2} lg={2} sm={2} />
-
-                        <br />
-                        <br />
-                    </Row>
-                </Container>
-                <Container fluid>
-                    <Row xs={12} md={12} lg={12} sm={12}>
-                    <Col xs={4} md={4} lg={4} sm={4}>
-                        </Col>
-                        
-                        <Col xs={2} md={2} lg={2} sm={2}>
-                            <Button onClick={submitButton}>Submit</Button>
-                        </Col>
-                        <Col xs={4} md={4} lg={4} sm={4}>
-                    </Col>
-                    
-
-                    </Row>
-                    <br />
-
-                    <br />
-                    <hr />
-                    <br />
-
-                    <br />
-                    <div id="containerEndRef" />
-                    <br />
+                   
                     <Results
-                               
+                               submitButton={submitButton}
                                    sub={sub}
                         ans={ans}
                         res={res}
