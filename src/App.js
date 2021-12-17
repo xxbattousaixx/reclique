@@ -7,7 +7,6 @@ import 'jquery/src/jquery';
 import Questions from './Questions';
 import Results from './Results';
 import Boxes from './Boxes';
-import toarr from 'toarr';
 
 
 export default function App() {
@@ -174,7 +173,7 @@ e.preventDefault();
     
     <div key="app" className="App" id="con1">
 
-      <Questions key="questions" questions={questions} page={page} />
+      <Questions key="qs" questions={questions} page={page} />
 
 
 <Container key="head" fluid>

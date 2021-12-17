@@ -57,13 +57,13 @@ for (let c=0;c<Object.keys(question.correct_answers[c]).length;c++){
     
     for (let y=0;y<Object.keys(question.correct_answers[c].entries[y]).length;y++){
 
-console.log(sub)
-if(sub.when===question.correct_answers[c].entries[y].when){
+console.log([...sub])
+if(sub[0][y][c].when===question.correct_answers[c].entries[y].when){
     res22[y].when ='correct';
     qs[y].when ='correct';
 }else{   res22[y].when ='incorrect';}
 
-    if(sub.type===question.correct_answers[c].entries[y].type){
+    if(sub[0][y][c].type===question.correct_answers[c].entries[y].type){
         res22[y].type ='correct';
     qs[y].type ='correct';
 //KHGHGHKJGKGGUIKG
@@ -73,77 +73,66 @@ if(sub.when===question.correct_answers[c].entries[y].when){
 
 if(question.correct_answers[c].entries[y].Dr){
 
-    if(sub.Dr===question.correct_answers[c].entries[y].Dr){
+    if(sub[0][y][c].Dr===question.correct_answers[c].entries[y].Dr){
         res22[y].Dr ='correct';
 
     }else{  res22[y].Dr ='incorrect';
 }
 
 }else{
-    if(sub.Cr===question.correct_answers[c].entries[y].Cr){
+    if(sub[0][y][c].Cr===question.correct_answers[c].entries[y].Cr){
         res22[y].Cr ='correct';
 
     }
 else{    res22[y].Cr ='incorrect';
-}
+}}
 if(((res22[y].Cr==='correct')||(res22[y].Cr==='correct'))&&(res22[y].Cr==='correct')&&(res22[y].Cr==='correct')){
     qs[i][y]='correct';
 
 }                // if (i===page){
              
+ 
 
                  
                     return(
-                        <Container key={`con${i}`} fluid>
 
 
-                        <div className='answers' id="results" key={i}>
+                        <div className='answers' id="results" key={`${i}`}>
                             
-                            <h4 key='n5' className='qt'>{JSON.stringify(sub[{i}])}</h4> 
-                            <h4 key='n6' className='qt'>{qs[{i}]}</h4> 
-                            <h4 key='n7' className='qt'>{question.correct_answers.entries[{y}]}</h4> 
+                            <h4 key={'subs${i}${y}'}className='qt'>{JSON.stringify([...sub][0][i])}</h4> 
+                            <h4 key={'qs${i}${y}'} className='qt'>{JSON.stringify([...qs])}</h4> 
+                            <h4 key={'e${i}${y}'} className='qt'>{question.correct_answers.entries[{y}]}</h4>
 
-                            <h4 key='n9' className='qt'>{res22.map((row,i)=>{
-                        return(<Col key={`col${i}`} xs={2} md={2} lg={2} sm={2}><div>
-<h4>Date--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {sub}</h4>
-<h4>Type--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {sub}</h4>
-<h4>Dr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {sub}</h4>
-<h4>Cr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {sub}</h4>
+                            <h5 key={'ares${i}${y}'} className='qt'>
+                                {JSON.stringify([...res22])}
+                                
+                                                       </h5>
 
-                        </div></Col>)})}</h4>
-                            <br/>
-                            <br/><br/>
-                            <h4></h4>         
-                             </div>  </Container>
+                    
+  </div>
+            
                     )
-                // }else{
-                //     return('');
-                // }
 
+
+                }       
 
             }
-        }
-     } }));
-
-            
-        }
-
-
-
-             else {
-            return (<h3>No Questions</h3>);
-
-
-
-
-
-        }
-    }
-
-return (
-    <>
-    {displayResults(props)}
-    </>
-)
-
-}
+            let xxx=-1;
+            res22=res22.map((row,i)=>{
+                xxx++;
+                return(<Col key={`col${i}`} xs={2} md={2} lg={2} sm={2}><div>
+        <h4 key={`ad${i}`}>Date--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {[...sub][0][i][xxx].when}</h4>
+        <h4 key={`at${i}`}>Type--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {[...sub][0][i][xxx].type}</h4>
+        <h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {[...sub][0][i][xxx].Cr}</h4>
+        <h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {[...sub][0][i][xxx].Dr}</h4>
+        
+                </div></Col>);
+                }
+                )
+return(<></>);}))}}
+            return (
+                <>
+                {displayResults(props)}
+                </>
+            )
+            }
