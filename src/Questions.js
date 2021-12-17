@@ -27,9 +27,9 @@ export default function Questions(props){
                 
 
                 return(
-                    <div id="cq" key='q${i}'>
-                        <h1 key="title${i}" >{question.title}</h1>
-                        <h3 key="desc${i}">{question.description}</h3>
+                    <div id="cq" key={`q${i}`}>
+                        <h1 key={`title${i}`} >{question.title}</h1>
+                        <h3 key={`desc${i}`}>{question.description}</h3>
                     </div>
                 )
                 }else{

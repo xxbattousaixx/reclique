@@ -7,13 +7,12 @@ import 'jquery/src/jquery';
 import Questions from './Questions';
 import Results from './Results';
 import Boxes from './Boxes';
-
+import toarr from 'toarr';
 
 
 export default function App() {
 
-
-    var p = 0;
+  let p = 0;
     const [questions, getQuestions] = useState('');
     const [page, getPage] = useState('');
     const [sub, getSub] = useState('');
@@ -91,8 +90,9 @@ export default function App() {
 
     const updateInput = () => {
       for (let n=0; n<Object.keys(questions).length;n++){
-      for (let b=0;b<Object.keys(JSON.parse(questions)[n].correct_answers).length;b++){
-      for (let l=0;l<Object.keys(JSON.parse(questions)[n].correct_answers[b].entries).length;l++){
+      for (let b=0;b<n;b++){
+      for (let l=0;l<b;l++){
+        console.log(id1);
       if (id1[0].name === 'date') {
         submission[n][b][l] = update.slice(2);
       } else if (id1[0].name === 'type') {
@@ -112,7 +112,7 @@ export default function App() {
 
 
       getSub(submission);
-      getAns(JSON.parse(questions)[n].correct_answers[b]);
+      getAns(questions[n].correct_answers[b]);
       console.log(JSON.stringify(ans));
       console.log(id1.current);
       console.log(sub);
@@ -215,7 +215,7 @@ e.preventDefault();
 <Container key="boxes" fluid>
 
   
-          <Boxes inputRef={inputRef} updateInput={getUpdate} questions={questions} p={p} />
+          <Boxes inputRef={inputRef} updateInput={getUpdate} questions={questions} page={page} />
   
   
    </Container>

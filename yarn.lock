@@ -14989,6 +14989,11 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
+toarr@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/toarr/-/toarr-0.0.1.tgz#17fa81b6d33d7ad360278a223b88bdaacd1536aa"
+  integrity sha1-F/qBttM9etNgJ4oiO4i9qs0VNqo=
+
 toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
