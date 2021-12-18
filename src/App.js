@@ -7,7 +7,7 @@ import 'jquery/src/jquery';
 import Questions from './Questions';
 import Results from './Results';
 import Boxes from './Boxes';
-
+import toarr from 'toarr';
 
 export default function App() {
 
@@ -19,51 +19,52 @@ export default function App() {
     const [ans,getAns] = useState('');
     const [update, getUpdate] = useState('');
     const inputRef = React.createRef();
-    let id1 = inputRef;
+   
+
     const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
     var submission = [{
       0:[{
-      'date': '',
+      'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
     },{
-      'date': '',
+      'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
     },
     {
-      'date': '',
+      'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
     },{
-      'date': '',
+      'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
    }],
    1:[{
-      'date': '',
+      'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
     },
     {
-      'date': '',
+      'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
     },
     {
-      'date': '',
+      'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
     },
     {
-      'date': '',
+      'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
@@ -87,48 +88,54 @@ export default function App() {
     };
 
 
-    const updateInput = () => {
-      for (let n=0; n<Object.keys(questions).length;n++){
+    const updateInput = (e) => {
+console.log(e.target.name);
+console.log(e.target.value);
+//for each question n
+      for (let n=0; n<Object.keys(questions).length-1;n++){
+        //number answers b
       for (let b=0;b<n;b++){
-      for (let l=0;l<b;l++){
-        console.log(id1);
-      if (id1[0].name === 'date') {
-        submission[n][b][l] = update.slice(2);
-      } else if (id1[0].name === 'type') {
-        console.log("BALLER");
-        submission[n][b][l].type = update;
-      } else if (id1[0].Dr === 'Dr') {
-        console.log("BALLER");
-
-        submission[n][b][l].Dr = update;
-        console.log("BALLER");
-
-      } else if (id1[0].Cr === 'Cr') {
-        console.log("BALLER");
-
-        submission[n][b][l].Cr = update;
-      } else { console.log("FAIL"); }
-
+        //index l
+      for (let l=0;l<Object.keys(questions.correct_answers.entries).length-1;l++){
+        getUpdate(e.target.name)
+        console.log(update);
+      if (update === 'when') {
+        submission[n][b].when = e.target.value.slice(2);
+      } 
+      if (update === 'type') {
+        submission[n][b].type = e.target.value;
+      }
+        if (update === 'Dr') {
+        submission[n][b].Dr = e.target.value;
+        
+        }
+        if (update === 'Cr') {
+        
+        submission[n][b].Cr = e.target.value;
+        }
 
       getSub(submission);
       getAns(questions[n].correct_answers[b]);
       console.log(JSON.stringify(ans));
-      console.log(id1.current);
+      console.log(update);
       console.log(sub);
-      console.log()
-    }}
-}    };
+    }} 
+  
+  
+  
+  }
+  
+  }
 
     const submitButton = (e) => {
       e.preventDefault();
 
       var result = '';
-      updateInput();
       getRes(result);
+      //CLEAR ALL
     };
 
     const onNext = (e) => {
-e.preventDefault();
 
       if (p < questions.length - 1) {
         getSub(submission);
@@ -152,7 +159,6 @@ e.preventDefault();
 
 
     const onPrev = (e) => {
-      e.preventDefault();
       if (p > 0) {
         getSub(submission);
 
@@ -214,7 +220,7 @@ e.preventDefault();
 <Container key="boxes" fluid>
 
   
-          <Boxes inputRef={inputRef} updateInput={getUpdate} questions={questions} page={page} />
+          <Boxes inputRef={inputRef}  updateInput={updateInput} questions={questions} page={page} />
   
   
    </Container>

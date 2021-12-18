@@ -57,7 +57,7 @@ for (let c=0;c<Object.keys(question.correct_answers[c]).length;c++){
     
     for (let y=0;y<Object.keys(question.correct_answers[c].entries[y]).length;y++){
 
-console.log([...sub])
+console.log([...sub][0])
 if(sub[0][y][c].when===question.correct_answers[c].entries[y].when){
     res22[y].when ='correct';
     qs[y].when ='correct';
@@ -69,7 +69,7 @@ if(sub[0][y][c].when===question.correct_answers[c].entries[y].when){
 //KHGHGHKJGKGGUIKG
     }else{
         res22[y].type ='incorrect';
-        console.log([...res22]);}
+       }
 
 if(question.correct_answers[c].entries[y].Dr){
 
