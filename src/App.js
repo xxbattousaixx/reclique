@@ -7,7 +7,6 @@ import 'jquery/src/jquery';
 import Questions from './Questions';
 import Results from './Results';
 import Boxes from './Boxes';
-import toarr from 'toarr';
 
 export default function App() {
 
@@ -17,61 +16,104 @@ export default function App() {
     const [sub, getSub] = useState('');
     const [res, getRes] = useState('');
     const [ans,getAns] = useState('');
-    const [update, getUpdate] = useState('');
-    const inputRef = React.createRef();
-   
-
+    const inputRef = React.createRef('');
+let submission =[{
+        0:[{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+     }],
+     1:[{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      }],
+      2:[{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      }],
+      3:[{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      },
+      {
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      }]
+  }];
     const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
-    var submission = [{
-      0:[{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    },{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    },
-    {
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    },{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-   }],
-   1:[{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    },
-    {
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    },
-    {
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    },
-    {
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    }]
-}];
-
-
     useEffect(() => {
       getAllQuestions();
       getPage(p);
@@ -88,48 +130,54 @@ export default function App() {
     };
 
 
-    const updateInput = (e) => {
-console.log(e.target.name);
-console.log(e.target.value);
-//for each question n
-      for (let n=0; n<Object.keys(questions).length-1;n++){
+    const updateInput = (inputRef) => {
+      
+//inputRef.target changes.....
+
+      for (let n=0; n<Object.keys([...questions]).length-1;n++){
+        console.log(inputRef.target.value);
+console.log([...submission])
         //number answers b
-      for (let b=0;b<n;b++){
+      for (let b=0;b<Object.keys([...questions]).length-1;b++){
         //index l
-      for (let l=0;l<Object.keys(questions.correct_answers.entries).length-1;l++){
-        getUpdate(e.target.name)
-        console.log(update);
-      if (update === 'when') {
-        submission[n][b].when = e.target.value.slice(2);
+
+      for (let l=0;l<4;l++){
+
+       
+
+
+      if (inputRef.target.name==='date') {
+        [...submission][n][b][l].when = +inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
       } 
-      if (update === 'type') {
-        submission[n][b].type = e.target.value;
+      if (inputRef.target.name==='type') {
+        [...submission][n][b][l].type = inputRef.target.value;
       }
-        if (update === 'Dr') {
-        submission[n][b].Dr = e.target.value;
+        if (inputRef.target.name==='Dr') {
+        [...submission][n][b][l].Dr = inputRef.target.value;
         
         }
-        if (update === 'Cr') {
+        if (inputRef.target.name==="Cr") {
         
-        submission[n][b].Cr = e.target.value;
+          [...submission][n][b][l].Cr = inputRef.target.value;
         }
 
-      getSub(submission);
-      getAns(questions[n].correct_answers[b]);
+      getAns(questions[n].correct_answers[b].entries);
       console.log(JSON.stringify(ans));
-      console.log(update);
-      console.log(sub);
-    }} 
+      console.log(submission);
+      console.log([...submission][n][b])
+      console.log([...submission][n][b][l])
+      console.log([...submission][n])
+
+
+    }
   
-  
-  
+  } 
   }
-  
-  }
+}
 
     const submitButton = (e) => {
       e.preventDefault();
-
+getSub([...submission]);
       var result = '';
       getRes(result);
       //CLEAR ALL
@@ -138,13 +186,11 @@ console.log(e.target.value);
     const onNext = (e) => {
 
       if (p < questions.length - 1) {
-        getSub(submission);
 
         p++;
 
         if ((p >= 0) && (p < questions.length)) {
 
-          getSub(submission);
 
           getPage(p);
           p--;
@@ -160,7 +206,6 @@ console.log(e.target.value);
 
     const onPrev = (e) => {
       if (p > 0) {
-        getSub(submission);
 
         p--;
 
@@ -220,7 +265,7 @@ console.log(e.target.value);
 <Container key="boxes" fluid>
 
   
-          <Boxes inputRef={inputRef}  updateInput={updateInput} questions={questions} page={page} />
+          <Boxes inputRef={inputRef} updateInput={updateInput} questions={questions} page={page} />
   
   
    </Container>
@@ -267,6 +312,7 @@ console.log(e.target.value);
       <br /><hr />
       <br />
       <br />
+      {JSON.stringify([...submission])}
 
       <br />
       <br />
