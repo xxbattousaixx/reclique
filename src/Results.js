@@ -8,13 +8,14 @@ import { Col} from 'react-bootstrap';
 export default function Results(props){
 
 const {sub}=props
-
+const {ans}=props;
     const displayResults = (props) => {
         const {questions} = props;
         var {submission} = props;
         var qs=[];
 
         if (sub){
+            submission=sub
  return(questions.map((question,i)=>{
 for(let f=0;f<Object.keys(question.correct_answers).length;f++){
     qs.splice(f,0,{
@@ -56,13 +57,12 @@ for (let c=0;c<Object.keys(question.correct_answers[c]).length;c++){
     
     for (let y=0;y<Object.keys(question.correct_answers[c].entries[y]).length;y++){
 
-console.log([...submission])
-if(submission[0][y][c].when===question.correct_answers[c].entries[y].when){
+if(submission[y][c].when===question.correct_answers[c].entries[y].when){
     res22[y][c].when ='correct';
     qs[y].when ='correct';
 }else{   res22[y].when ='incorrect';}
 
-    if(submission[0][y][c].type===question.correct_answers[c].entries[y].type){
+    if(submission[y][c].type===question.correct_answers[c].entries[y].type){
         res22[y].type ='correct';
     qs[y].type ='correct';
 //KHGHGHKJGKGGUIKG
@@ -72,14 +72,14 @@ if(submission[0][y][c].when===question.correct_answers[c].entries[y].when){
 
 if(question.correct_answers[c].entries[y].Dr){
 
-    if(submission[0][y][c].Dr===question.correct_answers[c].entries[y].Dr){
+    if(submission[c][y].Dr===question.correct_answers[c].entries[y].Dr){
         res22[y].Dr ='correct';
 
     }else{  res22[y].Dr ='incorrect';
 }
 
 }else{
-    if(submission[0][y][c].Cr===question.correct_answers[c].entries[y].Cr){
+    if(submission[y][c].Cr===question.correct_answers[c].entries[y].Cr){
         res22[y].Cr ='correct';
 
     }
@@ -98,9 +98,9 @@ if(((res22[y].Cr==='correct')||(res22[y].Cr==='correct'))&&(res22[y].Cr==='corre
 
                         <div className='answers' id="results" key={`${i}`}>
                             
-                            <h4 key={'subs${i}${y}'}className='qt'>{JSON.stringify([...submission][i])}</h4> 
+                            <h4 key={'subs${i}${y}'}className='qt'>{JSON.stringify(submission[i])}</h4> 
                             <h4 key={'qs${i}${y}'} className='qt'>{JSON.stringify([...qs])}</h4> 
-                            <h4 key={'e${i}${y}'} className='qt'>{question.correct_answers.entries[{y}]}</h4>
+                            <h4 key={'e${i}${y}'} className='qt'>{ans[{y}]}</h4>
 
                             <h5 key={'ares${i}${y}'} className='qt'>
                                 {JSON.stringify([...res22])}
@@ -120,10 +120,10 @@ if(((res22[y].Cr==='correct')||(res22[y].Cr==='correct'))&&(res22[y].Cr==='corre
             res22=res22.map((row,i)=>{
                 xxx++;
                 return(<Col key={`col${i}`} xs={2} md={2} lg={2} sm={2}><div>
-        <h4 key={`ad${i}`}>Date--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {[...submission][0][i][xxx].when}</h4>
-        <h4 key={`at${i}`}>Type--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {[...submission][0][i][xxx].type}</h4>
-        <h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {[...submission][0][i][xxx].Cr}</h4>
-        <h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {[...submission][0][i][xxx].Dr}</h4>
+        <h4 key={`ad${i}`}>Date--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {sub[i][xxx].when}</h4>
+        <h4 key={`at${i}`}>Type--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {sub[i][xxx].type}</h4>
+        <h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {sub[i][xxx].Cr}</h4>
+        <h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {sub[i][xxx].Dr}</h4>
         
                 </div></Col>);
                 }
