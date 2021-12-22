@@ -7,6 +7,8 @@ import 'jquery/src/jquery';
 import Questions from './Questions';
 import Results from './Results';
 import Boxes from './Boxes';
+import * as Scroll from 'react-scroll';
+import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 let sub1 = [];
 let submission ={
           0:{0:{
@@ -109,6 +111,7 @@ console.log(sub1);
     const submitButton = () => {
       getSub(sub1);
       //CLEAR ALL
+      scroll.scrollToBottom();
     };
 
     const onNext = () => {
