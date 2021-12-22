@@ -41,37 +41,69 @@ let sub1 = {
     'Cr': ''
     
     }},
-1:{
-  0:{
-    'when': '',
-    'type': '',
-    'Dr': '',
-    'Cr': ''
-    
-    },
     1:{
-    'when': '',
-    'type': '',
-    'Dr': '',
-    'Cr': ''
-    
-    },
-    
-    2:{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-      
-      },
-    
-      3:{
+      0:{
         'when': '',
         'type': '',
         'Dr': '',
         'Cr': ''
         
-        }}}
+        },
+        1:{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+        
+        },
+        
+        2:{
+          'when': '',
+          'type': '',
+          'Dr': '',
+          'Cr': ''
+          
+          },
+        
+          3:{
+            'when': '',
+            'type': '',
+            'Dr': '',
+            'Cr': ''
+            
+            }},
+            3:{
+              0:{
+                'when': '',
+                'type': '',
+                'Dr': '',
+                'Cr': ''
+                
+                },
+                1:{
+                'when': '',
+                'type': '',
+                'Dr': '',
+                'Cr': ''
+                
+                },
+                
+                2:{
+                  'when': '',
+                  'type': '',
+                  'Dr': '',
+                  'Cr': ''
+                  
+                  },
+                
+                  3:{
+                    'when': '',
+                    'type': '',
+                    'Dr': '',
+                    'Cr': ''
+                    
+                    }}
+}
 let submission ={
           0:{0:{
         'when': '',
@@ -140,28 +172,28 @@ console.log(submission)
         //index l
 
 
-       if(inputRef){
+       if(inputRef.target.name){
 
 
       if (inputRef.target.name==='date') {
-        submission[page][inputRef.target.id].when = inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
+        submission[page][inputRef.target.id.slice(1)].when = inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
       } 
       if (inputRef.target.name==='type') {
-        submission[page][inputRef.target.id].type = inputRef.target.value;
+        console.log(inputRef.target.id)
+        submission[page][inputRef.target.id.slice(1)].type = inputRef.target.value;
       }
-        if (inputRef.target.name==='Dr') {
-        submission[page][inputRef.target.id].Dr = inputRef.target.value;
+        if ((inputRef.target.name==='Dr')&&(submission[page][inputRef.target.id.slice(1)])){
+        submission[page][inputRef.target.id.slice(1)].Dr = inputRef.target.value;
         
         }
-        if (inputRef.target.name==="Cr") {
-        
-          submission[page][inputRef.target.id].Cr = inputRef.target.value;
+        if((inputRef.target.name==="Cr")&&(submission[page][inputRef.target.id.slice(1)])) {
+          submission[page][inputRef.target.id.slice(1)].Cr = inputRef.target.value;
         }
       // getAns(questions[n].correct_answers[b].entries);
       // console.log(JSON.stringify(ans));
-      console.log(JSON.stringify(submission[page][n]))
+      console.log(JSON.stringify(submission[page]))
     }
-sub1[page][n]=submission[page][n]
+sub1[page][inputRef.target.id.slice(1)]=submission[page][inputRef.target.id.slice(1)];
   
   }
 

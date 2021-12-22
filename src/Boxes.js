@@ -29,34 +29,34 @@ export default function Boxes(props){
   //  <></>);
   //   }return<></>
   // });return<></>});
-  
-  
-  return(
-  
-    [...questions].map((q,i)=>{
-        for (let c=0;c<Object.keys(q.correct_answers[page]).length;c++){
+  return([...questions].map((q,i)=>{
+
+
     
-          for (let y=0;y<Object.keys(q.correct_answers[page].entries).length;y++){
-               return(<> <Col key={`1${page}${c}${y}`} xs={3} md={3} lg={3} sm={3}>
-               <Form.Control value={inputRef.target} ref={inputRef} id={`${y}`} name='date'   type="date"  onChange={updateInput}/>                </Col>
-               < Col key={`2${page}${c}${y}`} xs={3} md={3} lg={3} sm={3}>
-                   <Form.Select value={inputRef.target} ref={inputRef} id={`${y}`} name='type' default   onChange={updateInput}> 
-               <option></option>
-                   <option>revenue</option>
-                   <option>deferred</option>
-                   <option>cash</option>
-                   <option>receivable</option>
-                   <option>contra</option>
-                   <option>system-credit</option>
-                 </Form.Select> 
-                </Col>
-             
-                  < Col key={`4${page}${c}${y}`} xs={3} md={3} lg={3} sm={3} >  
-                  <Form.Control value={inputRef.target} ref={inputRef} id={`${y}`}   name="Dr"  onChange={updateInput} default type="text" placeholder="$$$" />
-                 </Col>
-                 <Col key={`5${page}${c}${y}`} xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control value={inputRef.target} ref={inputRef}  id={`${y}`}  name="Cr"  onChange={updateInput} default type="text" placeholder="$$$" />
-                 </Col></>)}}
-    }))}
+       
+        return(q.correct_answers.map((cs,ii)=>{return(cs.entries.map((entry,iii)=>{if ((page===i)&&(ii===1)){return(
+          <><Col  xs={3} md={3} lg={3} sm={3}>
+          <Form.Control value={inputRef.target} ref={inputRef} id={`${page}${iii}`} name='date' key={`${page}${i}${iii}`}   type="date"  onChange={updateInput}/>                </Col>
+          < Col  xs={3} md={3} lg={3} sm={3}>
+              <Form.Select value={inputRef.target} ref={inputRef} id={`${page}${iii}`} name='type' key={`${page}${i}${iii}`} default   onChange={updateInput}> 
+          <option></option>
+              <option>revenue</option>
+              <option>deferred</option>
+              <option>cash</option>
+              <option>receivable</option>
+              <option>contra</option>
+              <option>system-credit</option>
+            </Form.Select>
+           </Col>
+        
+             < Col  xs={3} md={3} lg={3} sm={3} >  
+             <Form.Control value={inputRef.target} ref={inputRef} id={`${page}${iii}`} key={`${page}${i}${iii}`}   name="Dr"  onChange={updateInput} default type="text" placeholder="$$$" />
+            </Col>
+            <Col  xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control value={inputRef.target} ref={inputRef}  id={`${page}${i}${iii}`} key={`${page}${i}${iii}`}  name="Cr"  onChange={updateInput} default type="text" placeholder="$$$" />
+            </Col></>)}}))}
+            ))}))
+          }
+
 
   
 return (
