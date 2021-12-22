@@ -172,21 +172,25 @@ console.log(submission)
         //index l
 
 
-       if(inputRef.target.name){
+       if((inputRef.target.name)&&(submission[page][inputRef.target.id.slice(1)])){
 
+        console.log(inputRef.target.id)
 
       if (inputRef.target.name==='date') {
+
         submission[page][inputRef.target.id.slice(1)].when = inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
       } 
       if (inputRef.target.name==='type') {
-        console.log(inputRef.target.id)
+
         submission[page][inputRef.target.id.slice(1)].type = inputRef.target.value;
       }
-        if ((inputRef.target.name==='Dr')&&(submission[page][inputRef.target.id.slice(1)])){
+        if (inputRef.target.name==='Dr'){
+
         submission[page][inputRef.target.id.slice(1)].Dr = inputRef.target.value;
         
         }
-        if((inputRef.target.name==="Cr")&&(submission[page][inputRef.target.id.slice(1)])) {
+        if(inputRef.target.name==="Cr") {
+
           submission[page][inputRef.target.id.slice(1)].Cr = inputRef.target.value;
         }
       // getAns(questions[n].correct_answers[b].entries);

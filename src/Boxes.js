@@ -34,11 +34,11 @@ export default function Boxes(props){
 
     
        
-        return(q.correct_answers.map((cs,ii)=>{return(cs.entries.map((entry,iii)=>{if ((page===i)&&(ii===1)){return(
+        return(q.correct_answers.map((cs,ii)=>{return(cs.entries.map((entry,iii)=>{if ((page===i)&&(ii===1)){console.log(entry);return(
           <><Col  xs={3} md={3} lg={3} sm={3}>
-          <Form.Control value={inputRef.target} ref={inputRef} id={`${page}${iii}`} name='date' key={`${page}${i}${iii}`}   type="date"  onChange={updateInput}/>                </Col>
+          <Form.Control value={inputRef.target} ref={inputRef} id={`${iii}`} name='date' key={`${page}${i}${iii}`}   type="date"  onChange={updateInput}/>                </Col>
           < Col  xs={3} md={3} lg={3} sm={3}>
-              <Form.Select value={inputRef.target} ref={inputRef} id={`${page}${iii}`} name='type' key={`${page}${i}${iii}`} default   onChange={updateInput}> 
+              <Form.Select value={inputRef.target} ref={inputRef} id={`${iii}`} name='type' key={`${page}${i}${iii}`} default   onChange={updateInput}> 
           <option></option>
               <option>revenue</option>
               <option>deferred</option>
@@ -50,7 +50,7 @@ export default function Boxes(props){
            </Col>
         
              < Col  xs={3} md={3} lg={3} sm={3} >  
-             <Form.Control value={inputRef.target} ref={inputRef} id={`${page}${iii}`} key={`${page}${i}${iii}`}   name="Dr"  onChange={updateInput} default type="text" placeholder="$$$" />
+             <Form.Control value={inputRef.target} ref={inputRef} id={`${iii}`} key={`${page}${i}${iii}`}   name="Dr"  onChange={updateInput} default type="text" placeholder="$$$" />
             </Col>
             <Col  xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control value={inputRef.target} ref={inputRef}  id={`${page}${i}${iii}`} key={`${page}${i}${iii}`}  name="Cr"  onChange={updateInput} default type="text" placeholder="$$$" />
             </Col></>)}}))}
