@@ -9,7 +9,69 @@ import Results from './Results';
 import Boxes from './Boxes';
 import * as Scroll from 'react-scroll';
 import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-let sub1 = [];
+let sub1 = {
+  0:{
+    0:{
+'when': '',
+'type': '',
+'Dr': '',
+'Cr': ''
+
+},
+1:{
+'when': '',
+'type': '',
+'Dr': '',
+'Cr': ''
+
+},
+
+2:{
+  'when': '',
+  'type': '',
+  'Dr': '',
+  'Cr': ''
+  
+  },
+
+  3:{
+    'when': '',
+    'type': '',
+    'Dr': '',
+    'Cr': ''
+    
+    }},
+1:{
+  0:{
+    'when': '',
+    'type': '',
+    'Dr': '',
+    'Cr': ''
+    
+    },
+    1:{
+    'when': '',
+    'type': '',
+    'Dr': '',
+    'Cr': ''
+    
+    },
+    
+    2:{
+      'when': '',
+      'type': '',
+      'Dr': '',
+      'Cr': ''
+      
+      },
+    
+      3:{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+        
+        }}}
 let submission ={
           0:{0:{
         'when': '',
@@ -99,8 +161,7 @@ console.log(submission)
       // console.log(JSON.stringify(ans));
       console.log(JSON.stringify(submission[page][n]))
     }
-    sub1[page]=submission[n];
-  
+sub1[page][n]=submission[page][n]
  
   }
 

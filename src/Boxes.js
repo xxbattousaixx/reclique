@@ -10,6 +10,7 @@ export default function Boxes(props){
   const {questions} = props;
     const {updateInput} = props;
    const {inputRef}=props;
+   const {page}=props;
     
                     
   const displayBoxes=()=>{
@@ -33,14 +34,13 @@ export default function Boxes(props){
   return(
   
     [...questions].map((q,i)=>{
-      for (let f=0;f<Object.keys(q.correct_answers).length;f++){
-        for (let c=0;c<Object.keys(q.correct_answers[c].entries).length;c++){
+        for (let c=0;c<Object.keys(q.correct_answers[page]).length;c++){
     
-          for (let y=0;y<Object.keys(q.correct_answers[c].entries[y]).length;y++){
-               return<><Col key={`1${c}${y}`} xs={3} md={3} lg={3} sm={3}>
-               <Form.Control value={inputRef.target} ref={inputRef} key={`when${c}${y}`} name='date'   type="date"  onChange={updateInput}/>                </Col>
-               < Col key={`3${c}${y}`} xs={3} md={3} lg={3} sm={3}>
-                   <Form.Select value={inputRef.target} ref={inputRef} key={`type${c}${y}`} name='type' default   onChange={updateInput}> 
+          for (let y=0;y<Object.keys(q.correct_answers[page].entries).length;y++){
+               return(<> <Col key={`1${page}${c}${y}`} xs={3} md={3} lg={3} sm={3}>
+               <Form.Control value={inputRef.target} ref={inputRef} key={`when${page}${c}${y}`} name='date'   type="date"  onChange={updateInput}/>                </Col>
+               < Col key={`3${page}${c}${y}`} xs={3} md={3} lg={3} sm={3}>
+                   <Form.Select value={inputRef.target} ref={inputRef} key={`type${page}${c}${y}`} name='type' default   onChange={updateInput}> 
                <option></option>
                    <option>revenue</option>
                    <option>deferred</option>
@@ -51,11 +51,11 @@ export default function Boxes(props){
                  </Form.Select> 
                 </Col>
              
-                  < Col key={`4${c}${y}`} xs={3} md={3} lg={3} sm={3} >  
-                  <Form.Control value={inputRef.target} ref={inputRef} key={`dr${c}${y}`}   name="Dr"  onChange={updateInput} default type="text" placeholder="$$$" />
+                  < Col key={`4${page}${c}${y}`} xs={3} md={3} lg={3} sm={3} >  
+                  <Form.Control value={inputRef.target} ref={inputRef} key={`dr${page}${c}${y}`}   name="Dr"  onChange={updateInput} default type="text" placeholder="$$$" />
                  </Col>
-                 <Col key={`5${c}${y}`} xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control value={inputRef.target} ref={inputRef}  key={`cr${c}${y}`}  name="Cr"  onChange={updateInput} default type="text" placeholder="$$$" />
-                 </Col></>}}}
+                 <Col key={`5${page}${c}${y}`} xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control value={inputRef.target} ref={inputRef}  key={`cr${page}${c}${y}`}  name="Cr"  onChange={updateInput} default type="text" placeholder="$$$" />
+                 </Col></>)}}
     }))}
 
   
