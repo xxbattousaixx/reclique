@@ -133,7 +133,7 @@ export default function App() {
       
 //inputRef.target changes.....
 
-      for (let n=0; n<Object.keys([...questions][page].correct_answers[page]).length-1;n++){
+      for (let n=0; n<Object.keys([...questions][page].correct_answers[0].entries).length-1;n++){
         console.log(inputRef.target.value);
 console.log(submission)
         //number answers b
@@ -144,25 +144,25 @@ console.log(submission)
 
 
       if (inputRef.target.name==='date') {
-        submission[page][n].when = +inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
+        submission[page][inputRef.target.id].when = inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
       } 
       if (inputRef.target.name==='type') {
-        submission[page][n].type = inputRef.target.value;
+        submission[page][inputRef.target.id].type = inputRef.target.value;
       }
         if (inputRef.target.name==='Dr') {
-        submission[page][n].Dr = inputRef.target.value;
+        submission[page][inputRef.target.id].Dr = inputRef.target.value;
         
         }
         if (inputRef.target.name==="Cr") {
         
-          submission[page][n].Cr = inputRef.target.value;
+          submission[page][inputRef.target.id].Cr = inputRef.target.value;
         }
       // getAns(questions[n].correct_answers[b].entries);
       // console.log(JSON.stringify(ans));
       console.log(JSON.stringify(submission[page][n]))
     }
 sub1[page][n]=submission[page][n]
- 
+  
   }
 
 console.log(sub1);
@@ -230,7 +230,6 @@ console.log(sub1);
       <Questions key="qs" questions={questions} page={page} />
 
 
-<Container key="head" fluid>
       <Container key="head2" id="cf" fluid>
         <br />
 
@@ -263,15 +262,15 @@ console.log(sub1);
           <Col xs={3} md={3} lg={3} sm={3}></Col>
           <Col xs={3} md={3} lg={3} sm={3}>&nbsp;</Col>
           <Col xs={3} md={3} lg={3} sm={3} id="vl">&nbsp;</Col>
+        <Boxes inputRef={inputRef} updateInput={updateInput} questions={questions} page={page} />
+
         </Row>
-        </Container></Container>
-<Container key="boxes" fluid>
+        </Container>
+        
 
   
-          <Boxes inputRef={inputRef} updateInput={updateInput} questions={questions} page={page} />
   
   
-   </Container>
       <br />
       <br />
       <br />

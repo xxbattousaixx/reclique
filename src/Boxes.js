@@ -38,9 +38,9 @@ export default function Boxes(props){
     
           for (let y=0;y<Object.keys(q.correct_answers[page].entries).length;y++){
                return(<> <Col key={`1${page}${c}${y}`} xs={3} md={3} lg={3} sm={3}>
-               <Form.Control value={inputRef.target} ref={inputRef} key={`when${page}${c}${y}`} name='date'   type="date"  onChange={updateInput}/>                </Col>
-               < Col key={`3${page}${c}${y}`} xs={3} md={3} lg={3} sm={3}>
-                   <Form.Select value={inputRef.target} ref={inputRef} key={`type${page}${c}${y}`} name='type' default   onChange={updateInput}> 
+               <Form.Control value={inputRef.target} ref={inputRef} id={`${y}`} name='date'   type="date"  onChange={updateInput}/>                </Col>
+               < Col key={`2${page}${c}${y}`} xs={3} md={3} lg={3} sm={3}>
+                   <Form.Select value={inputRef.target} ref={inputRef} id={`${y}`} name='type' default   onChange={updateInput}> 
                <option></option>
                    <option>revenue</option>
                    <option>deferred</option>
@@ -52,9 +52,9 @@ export default function Boxes(props){
                 </Col>
              
                   < Col key={`4${page}${c}${y}`} xs={3} md={3} lg={3} sm={3} >  
-                  <Form.Control value={inputRef.target} ref={inputRef} key={`dr${page}${c}${y}`}   name="Dr"  onChange={updateInput} default type="text" placeholder="$$$" />
+                  <Form.Control value={inputRef.target} ref={inputRef} id={`${y}`}   name="Dr"  onChange={updateInput} default type="text" placeholder="$$$" />
                  </Col>
-                 <Col key={`5${page}${c}${y}`} xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control value={inputRef.target} ref={inputRef}  key={`cr${page}${c}${y}`}  name="Cr"  onChange={updateInput} default type="text" placeholder="$$$" />
+                 <Col key={`5${page}${c}${y}`} xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control value={inputRef.target} ref={inputRef}  id={`${y}`}  name="Cr"  onChange={updateInput} default type="text" placeholder="$$$" />
                  </Col></>)}}
     }))}
 
