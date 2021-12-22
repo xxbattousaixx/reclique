@@ -6,16 +6,14 @@ import 'jquery/src/jquery';
 import { Col} from 'react-bootstrap';
 
 export default function Results(props){
-
 const {sub}=props
 const {ans}=props;
     const displayResults = (props) => {
         const {questions} = props;
         var {submission} = props;
         var qs=[];
-
+        var {sub1} = props;
         if (sub){
-            submission=sub
  return(questions.map((question,i)=>{
 for(let f=0;f<Object.keys(question.correct_answers).length;f++){
     qs.splice(f,0,{
@@ -25,68 +23,68 @@ for(let f=0;f<Object.keys(question.correct_answers).length;f++){
         'Cr':''})
 }     
 
-    let res22=[{
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''
-      },
-      {
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''
+    let res22={
+        0:{0:{
+      'when': '',
+      'type': '',
+      'Dr': '',
+      'Cr': ''
     
-      },
-      {
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''
-    
-      },
-      {
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr':''
-    
-      }];
+  },
+  1:{
+    'when': '',
+    'type': '',
+    'Dr': '',
+    'Cr': ''
+  
+}},
+1:{0:{
+'when': '',
+'type': '',
+'Dr': '',
+'Cr': ''
+
+},
+1:{
+'when': '',
+'type': '',
+'Dr': '',
+'Cr': ''
+
+}}}
 
 for (let c=0;c<Object.keys(question.correct_answers[c]).length;c++){
     
     for (let y=0;y<Object.keys(question.correct_answers[c].entries[y]).length;y++){
+if(sub1[c][y].when===question.correct_answers[c].entries[y].when){
+    res22[c][y].when ='correct';
+    qs[y] ='correct';
+}else{   res22[c][y].when ='incorrect';}
 
-if(submission[y][c].when===question.correct_answers[c].entries[y].when){
-    res22[y][c].when ='correct';
-    qs[y].when ='correct';
-}else{   res22[y].when ='incorrect';}
-
-    if(submission[y][c].type===question.correct_answers[c].entries[y].type){
-        res22[y].type ='correct';
-    qs[y].type ='correct';
+    if(sub1[c][y].type===question.correct_answers[c].entries[y].type){
+        res22[c][y].type ='correct';
 //KHGHGHKJGKGGUIKG
     }else{
-        res22[y].type ='incorrect';
+        res22[c][y].type ='incorrect';
        }
 
 if(question.correct_answers[c].entries[y].Dr){
 
-    if(submission[c][y].Dr===question.correct_answers[c].entries[y].Dr){
-        res22[y].Dr ='correct';
+    if(sub1[c][y].Dr===question.correct_answers[c].entries[y].Dr){
+        res22[c][y].Dr ='correct';
 
-    }else{  res22[y].Dr ='incorrect';
+    }else{  res22[c][y].Dr ='incorrect';
 }
 
 }else{
-    if(submission[y][c].Cr===question.correct_answers[c].entries[y].Cr){
-        res22[y].Cr ='correct';
+    if(submission[y].Cr===question.correct_answers[c].entries[y].Cr){
+        res22[c][y].Cr ='correct';
 
     }
-else{    res22[y].Cr ='incorrect';
+else{    res22[c][y].Cr ='incorrect';
 }}
-if(((res22[y].Cr==='correct')||(res22[y].Cr==='correct'))&&(res22[y].Cr==='correct')&&(res22[y].Cr==='correct')){
-    qs[i][y]='correct';
+if(((res22[c][y].Cr==='correct')||(res22[c][y].Cr==='correct'))&&(res22[c][y].Cr==='correct')&&(res22[c][y].Cr==='correct')){
+    // qs[c][y]='correct';
 
 }                // if (i===page){
              
@@ -98,12 +96,12 @@ if(((res22[y].Cr==='correct')||(res22[y].Cr==='correct'))&&(res22[y].Cr==='corre
 
                         <div className='answers' id="results" key={`${i}`}>
                             
-                            <h4 key={'subs${i}${y}'}className='qt'>{JSON.stringify(submission[i])}</h4> 
+                            <h4 key={'subs${i}${y}'}className='qt'>{JSON.stringify(submission)}</h4> 
                             <h4 key={'qs${i}${y}'} className='qt'>{JSON.stringify([...qs])}</h4> 
                             <h4 key={'e${i}${y}'} className='qt'>{ans[{y}]}</h4>
 
                             <h5 key={'ares${i}${y}'} className='qt'>
-                                {JSON.stringify([...res22])}
+                                {JSON.stringify(res22)}
                                 
                                                        </h5>
 

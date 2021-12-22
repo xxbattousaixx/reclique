@@ -7,6 +7,36 @@ import 'jquery/src/jquery';
 import Questions from './Questions';
 import Results from './Results';
 import Boxes from './Boxes';
+let sub1 = [];
+let submission ={
+          0:{0:{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+      
+    },
+    1:{
+      'when': '',
+      'type': '',
+      'Dr': '',
+      'Cr': ''
+    
+  }},
+1:{0:{
+  'when': '',
+  'type': '',
+  'Dr': '',
+  'Cr': ''
+
+},
+1:{
+'when': '',
+'type': '',
+'Dr': '',
+'Cr': ''
+
+}}}
 
 export default function App() {
 
@@ -17,49 +47,6 @@ export default function App() {
     const [res, getRes] = useState('');
     const [ans,getAns] = useState('');
     const inputRef = React.createRef('');
-let sub1 = [];
-let submission ={
-        0:[{
-          0:[{
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr': ''
-      
-    }],1:[{
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr': ''
-      }],
-     
-    }],
-     1:[{0:[{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    }]
-  ,1:[{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    }],
-    2:[{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    }],3:[{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-   }]
-  
-}]
-};
 
     const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
     useEffect(() => {
@@ -82,11 +69,10 @@ let submission ={
       
 //inputRef.target changes.....
 
-      for (let n=0; n<Object.keys([...questions][page].correct_answers).length-1;n++){
+      for (let n=0; n<Object.keys([...questions][page].correct_answers[page]).length-1;n++){
         console.log(inputRef.target.value);
 console.log(submission)
         //number answers b
-      for (let b=0;b<Object.keys([...questions][page].correct_answers[n]).length-1;b++){
         //index l
 
 
@@ -94,38 +80,38 @@ console.log(submission)
 
 
       if (inputRef.target.name==='date') {
-        submission[page][n][b].when = +inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
+        submission[page][n].when = +inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
       } 
       if (inputRef.target.name==='type') {
-        submission[page][n][b].type = inputRef.target.value;
+        submission[page][n].type = inputRef.target.value;
       }
         if (inputRef.target.name==='Dr') {
-        submission[page][n][b].Dr = inputRef.target.value;
+        submission[page][n].Dr = inputRef.target.value;
         
         }
         if (inputRef.target.name==="Cr") {
         
-          submission[page][n][b].Cr = inputRef.target.value;
+          submission[page][n].Cr = inputRef.target.value;
         }
-      }
-      getAns(questions[n].correct_answers[b].entries);
-      console.log(JSON.stringify(ans));
-      console.log(submission[n][b])
-sub1.push(submission[n][b])
-console.log(sub1)
+      // getAns(questions[n].correct_answers[b].entries);
+      // console.log(JSON.stringify(ans));
+      console.log(JSON.stringify(submission[page][n]))
     }
+    sub1[page]=submission[n];
   
+ 
   }
+
+console.log(sub1);
+
 }
 
-    const submitButton = (e) => {
-      e.preventDefault();
-      var result = '';
-      getRes(result);
+    const submitButton = () => {
+      getSub(sub1);
       //CLEAR ALL
     };
 
-    const onNext = (e) => {
+    const onNext = () => {
 
       if (p < questions.length - 1) {
 
@@ -133,12 +119,17 @@ console.log(sub1)
 
         if ((p >= 0) && (p < questions.length)) {
 
-          
+          if (submission[page]){
+            sub1[page]=submission[page];
+          }
           getPage(p);
           
           p--;
         }
       } else if (p === questions.length - 1) {
+        if (submission[page]){
+          sub1[page]=submission[page];
+        }
         getPage(p);
       }
 
@@ -147,16 +138,21 @@ console.log(sub1)
 
 
 
-    const onPrev = (e) => {
+    const onPrev = () => {
       if (p > 0) {
 
         p--;
 
         if ((p <= questions.length - 1) && (p >= 0)) {
+          if (submission[page]){
+            sub1[page]=submission[page];
+          }
           getPage(p);
         }
       } else if (p === 0) {
-
+        if (submission[page]){
+          sub1[page]=submission[page];
+        }
         getPage(p);
       }
 
@@ -260,7 +256,7 @@ console.log(sub1)
       <br />
       <br />
 <Container key="results" fluid>
-      <Results key='2' sub={sub} ans={ans} res={res} page={page} questions={questions} />
+      <Results sub1={sub1} key='2' sub={sub} ans={ans} res={res} page={page} questions={questions} />
 
 </Container>
     </div>
