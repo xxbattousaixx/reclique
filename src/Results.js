@@ -6,8 +6,8 @@ import 'jquery/src/jquery';
 import {Col} from 'react-bootstrap';
 
 export default function Results(props){
-    const {res,getRes}=props;
 const {sub}=props
+
 const {ans}=props;
 const {page}=props;
     const displayResults = (props) => {
@@ -149,29 +149,29 @@ for(let f=0;f<Object.keys(question.correct_answers).length;f++){
                                 }}}
 
 for (let c=0;c<Object.keys(question.correct_answers[page]).length;c++){
-    for (let y=0;y<Object.keys(question.correct_answers[page].entries).length;y++){
-if(sub[page][y].when===question.correct_answers[page].entries[y].when){
+    for (let y=0;y<Object.keys(question.correct_answers[1].entries).length;y++){
+if(sub[page][y].when===question.correct_answers[1].entries[y].when){
     res22[page][y].when ='correct';
     
 }else{   res22[page][y].when ='incorrect';}
 
-    if(sub[page][y].type===question.correct_answers[page].entries[y].type){
+    if(sub[page][y].type===question.correct_answers[1].entries[y].type){
         res22[page][y].type ='correct';
 //KHGHGHKJGKGGUIKG
     }else{
         res22[page][y].type ='incorrect';
        }
 
-if(question.correct_answers[page].entries[y].Dr){
+if(question.correct_answers[1].entries[y].Dr){
 
-    if(sub[page][y].Dr===question.correct_answers[page].entries[y].Dr){
+    if(sub[page][y].Dr===question.correct_answers[1].entries[y].Dr){
         res22[page][y].Dr ='correct';
 
     }else{  res22[page][y].Dr ='incorrect';
 }
 
 }else{
-    if(sub[page][y].Cr===question.correct_answers[page].entries[y].Cr){
+    if(sub[page][y].Cr===question.correct_answers[1].entries[y].Cr){
         res22[page][y].Cr ='correct';
 
     }
@@ -186,6 +186,7 @@ if(((res22[page][y].Dr==='correct')||(res22[page][y].Cr==='correct'))&&(res22[pa
              console.log(ans);
                                         
                 return(questions[page].correct_answers[1].entries.map((a,b)=>{
+                    console.log(sub[page][b])
 
 return(
                         <div className='answers' id="results" key={`${b}`}>
@@ -205,11 +206,11 @@ return(
                 </Col>
                 <Col xs={3} md={3} lg={3} sm={3}>
                 
-                <h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(a.Dr)}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][b].Cr)}</h4>
+                <h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(a.Dr)}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][b].Dr)}</h4>
                 </Col>
                 <Col xs={3} md={3} lg={3} sm={3}>
                 
-                <h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(a.Cr)}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][b].Dr)}</h4>
+                <h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(a.Cr)}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][b].Cr)}</h4>
                 </Col>
                 
         

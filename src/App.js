@@ -303,7 +303,7 @@ console.log(submission)
 
       if (inputRef.target.name==='date') {
 
-        submission[page][inputRef.target.id].when = parseInt(inputRef.target.value.slice(8,10))+'/'+inputRef.target.value.slice(5,7);
+        submission[page][inputRef.target.id].when = parseInt(inputRef.target.value.slice(5,7))+'/'+parseInt(inputRef.target.value.slice(8,10));
       } 
       if (inputRef.target.name==='type') {
 
@@ -325,7 +325,6 @@ console.log(submission)
   
 
     console.log(JSON.stringify(submission[page]))
-sub1[page][inputRef.target.id]=submission[page][inputRef.target.id];
   
   }
 
@@ -333,8 +332,7 @@ sub1[page][inputRef.target.id]=submission[page][inputRef.target.id];
 
     const submitButton = () => {
       getAns(arr);
-      getSub('');
-      getSub(sub1);
+      getSub(submission);
       //CLEAR ALL
       scroll.scrollToBottom();
     };
@@ -483,7 +481,7 @@ sub1[page][inputRef.target.id]=submission[page][inputRef.target.id];
       <br />
       <br />
 <Container key="results" fluid>
-      <Results sub1={sub1} key='2' sub={sub} ans={ans} res={res} getRes={getRes} page={page} questions={questions} />
+      <Results sub1={sub1} key='2' submission={submission} sub={sub} ans={ans} res={res} getSub={getSub} page={page} questions={questions} />
 
 </Container>
     </div>
