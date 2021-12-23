@@ -3,11 +3,12 @@
 
 import React from 'react';
 import 'jquery/src/jquery';
-import { Col} from 'react-bootstrap';
+import { Row,Col} from 'react-bootstrap';
 
 export default function Results(props){
 const {sub}=props
 const {ans}=props;
+const {page}=props;
     const displayResults = (props) => {
         const {questions} = props;
         var {submission} = props;
@@ -24,70 +25,168 @@ for(let f=0;f<Object.keys(question.correct_answers).length;f++){
 }     
 
     let res22={
-        0:{0:{
+        0:{
+          0:{
       'when': '',
       'type': '',
       'Dr': '',
       'Cr': ''
-    
-  },
-  1:{
-    'when': '',
-    'type': '',
-    'Dr': '',
-    'Cr': ''
-  
-}},
-1:{0:{
-'when': '',
-'type': '',
-'Dr': '',
-'Cr': ''
+      
+      },
+      1:{
+      'when': '',
+      'type': '',
+      'Dr': '',
+      'Cr': ''
+      
+      },
+      
+      2:{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+        
+        },
+      
+        3:{
+          'when': '',
+          'type': '',
+          'Dr': '',
+          'Cr': ''
+          
+          }},
+        1:{
+            0:{
+              'when': '',
+              'type': '',
+              'Dr': '',
+              'Cr': ''
+              
+              },
+              1:{
+              'when': '',
+              'type': '',
+              'Dr': '',
+              'Cr': ''
+              
+              },
+              
+              2:{
+                'when': '',
+                'type': '',
+                'Dr': '',
+                'Cr': ''
+                
+                },
+              
+                3:{
+                  'when': '',
+                  'type': '',
+                  'Dr': '',
+                  'Cr': ''
+                  
+                  }},
+         2:{
+                    0:{
+                      'when': '',
+                      'type': '',
+                      'Dr': '',
+                      'Cr': ''
+                      
+                      },
+                      1:{
+                      'when': '',
+                      'type': '',
+                      'Dr': '',
+                      'Cr': ''
+                      
+                      },
+                      
+                      2:{
+                        'when': '',
+                        'type': '',
+                        'Dr': '',
+                        'Cr': ''
+                        
+                        },
+                      
+                        3:{
+                          'when': '',
+                          'type': '',
+                          'Dr': '',
+                          'Cr': ''
+                          
+                          }},
+                          3:{0:{
+                            'when': '',
+                            'type': '',
+                            'Dr': '',
+                            'Cr': ''
+                            
+                            },
+                            1:{
+                            'when': '',
+                            'type': '',
+                            'Dr': '',
+                            'Cr': ''
+                            
+                            },
+                            
+                            2:{
+                              'when': '',
+                              'type': '',
+                              'Dr': '',
+                              'Cr': ''
+                              
+                              },
+                            
+                              3:{
+                                'when': '',
+                                'type': '',
+                                'Dr': '',
+                                'Cr': ''
+                                
+                                }}}
 
-},
-1:{
-'when': '',
-'type': '',
-'Dr': '',
-'Cr': ''
-
-}}}
-
-for (let c=0;c<Object.keys(question.correct_answers[c]).length;c++){
-    
-    for (let y=0;y<Object.keys(question.correct_answers[c].entries[y]).length;y++){
-if(sub1[c][y].when===question.correct_answers[c].entries[y].when){
-    res22[c][y].when ='correct';
+for (let c=0;c<Object.keys(question.correct_answers[page]).length;c++){
+    console.log(sub1);
+    console.log(sub)
+    console.log(res22)
+    for (let y=0;y<Object.keys(question.correct_answers[page].entries).length;y++){
+if(sub[page][y].when===question.correct_answers[page].entries[y].when){
+    res22[page][y].when ='correct';
     qs[y] ='correct';
-}else{   res22[c][y].when ='incorrect';}
+}else{   res22[page][y].when ='incorrect';}
 
-    if(sub1[c][y].type===question.correct_answers[c].entries[y].type){
-        res22[c][y].type ='correct';
+    if(sub[page][y].type===question.correct_answers[page].entries[y].type){
+        res22[page][y].type ='correct';
 //KHGHGHKJGKGGUIKG
     }else{
-        res22[c][y].type ='incorrect';
+        res22[page][y].type ='incorrect';
        }
 
-if(question.correct_answers[c].entries[y].Dr){
+if(question.correct_answers[page].entries[y].Dr){
 
-    if(sub1[c][y].Dr===question.correct_answers[c].entries[y].Dr){
-        res22[c][y].Dr ='correct';
+    if(sub[page][y].Dr===question.correct_answers[page].entries[y].Dr){
+        res22[page][y].Dr ='correct';
 
-    }else{  res22[c][y].Dr ='incorrect';
+    }else{  res22[page][y].Dr ='incorrect';
 }
 
 }else{
-    if(submission[y].Cr===question.correct_answers[c].entries[y].Cr){
-        res22[c][y].Cr ='correct';
+    if(sub[page][y].Cr===question.correct_answers[page].entries[y].Cr){
+        res22[page][y].Cr ='correct';
 
     }
-else{    res22[c][y].Cr ='incorrect';
+else{    res22[page][y].Cr ='incorrect';
 }}
-if(((res22[c][y].Cr==='correct')||(res22[c][y].Cr==='correct'))&&(res22[c][y].Cr==='correct')&&(res22[c][y].Cr==='correct')){
-    // qs[c][y]='correct';
+if(((res22[page][y].Cr==='correct')||(res22[page][y].Cr==='correct'))&&(res22[page][y].Cr==='correct')&&(res22[page][y].Cr==='correct')){
+    qs[page][y]='correct';
 
-}                // if (i===page){
-             
+}               
+ if (i===page){
+             console.log(ans);
  
 
                  
@@ -95,38 +194,45 @@ if(((res22[c][y].Cr==='correct')||(res22[c][y].Cr==='correct'))&&(res22[c][y].Cr
 
 
                         <div className='answers' id="results" key={`${i}`}>
+    <Col xs={12} md={12} lg={12} sm={12}>
                             
-                            <h4 key={'subs${i}${y}'}className='qt'>{JSON.stringify(submission)}</h4> 
+                            <h4 key={'subs${i}${y}'}className='qt'>{JSON.stringify(sub)}</h4> 
                             <h4 key={'qs${i}${y}'} className='qt'>{JSON.stringify([...qs])}</h4> 
-                            <h4 key={'e${i}${y}'} className='qt'>{ans[{y}]}</h4>
+                            
+                                </Col>
+                            <Col xs={3} md={3} lg={3} sm={3}>
+<h4 key={`ad${i}`}>Date--<br/> Answer: {JSON.stringify(ans[page])}<br/> vs. <br/> Your answer: {JSON.stringify(sub[page][y].when)}</h4>
+</Col>
+<Col xs={3} md={3} lg={3} sm={3}>
 
-                            <h5 key={'ares${i}${y}'} className='qt'>
-                                {JSON.stringify(res22)}
+<h4 key={`at${i}`}>Type--<br/> Answer: {JSON.stringify(ans[page])}<br/> vs. <br/> Your answer: {JSON.stringify(sub[page][y].type)}</h4>
+</Col>
+<Col xs={3} md={3} lg={3} sm={3}>
+
+<h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(ans[page])}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][y].Cr)}</h4>
+</Col>
+<Col xs={3} md={3} lg={3} sm={3}>
+
+<h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(ans[page])}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][y].Dr)}</h4>
+</Col>
+
                                 
-                                                       </h5>
 
                     
   </div>
             
                     )
 
-
+                    }
                 }       
 
             }
-            let xxx=-1;
-            res22=res22.map((row,i)=>{
-                xxx++;
-                return(<Col key={`col${i}`} xs={2} md={2} lg={2} sm={2}><div>
-        <h4 key={`ad${i}`}>Date--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {sub[i][xxx].when}</h4>
-        <h4 key={`at${i}`}>Type--<br/> Answer: {JSON.stringify(row)}<br/> vs. <br/> Your answer: {sub[i][xxx].type}</h4>
-        <h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {sub[i][xxx].Cr}</h4>
-        <h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(row)}<br/> vs.<br/> Your answer: {sub[i][xxx].Dr}</h4>
-        
-                </div></Col>);
-                }
-                )
-return(<></>);}))}}
+            
+                
+return(<>
+        </>);}))
+
+}}
             return (
                 <>
                 {displayResults(props)}

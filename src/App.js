@@ -41,7 +41,7 @@ let sub1 = {
     'Cr': ''
     
     }},
-    1:{
+  1:{
       0:{
         'when': '',
         'type': '',
@@ -72,7 +72,7 @@ let sub1 = {
             'Cr': ''
             
             }},
-            3:{
+   2:{
               0:{
                 'when': '',
                 'type': '',
@@ -102,28 +102,44 @@ let sub1 = {
                     'Dr': '',
                     'Cr': ''
                     
-                    }}
-}
+                    }},
+                    3:{0:{
+                      'when': '',
+                      'type': '',
+                      'Dr': '',
+                      'Cr': ''
+                      
+                      },
+                      1:{
+                      'when': '',
+                      'type': '',
+                      'Dr': '',
+                      'Cr': ''
+                      
+                      },
+                      
+                      2:{
+                        'when': '',
+                        'type': '',
+                        'Dr': '',
+                        'Cr': ''
+                        
+                        },
+                      
+                        3:{
+                          'when': '',
+                          'type': '',
+                          'Dr': '',
+                          'Cr': ''
+                          
+                          }}}
 let submission ={
-          0:{0:{
-        'when': '',
-        'type': '',
-        'Dr': '',
-        'Cr': ''
-      
-    },
-    1:{
-      'when': '',
-      'type': '',
-      'Dr': '',
-      'Cr': ''
-    
-  }},
-1:{0:{
-  'when': '',
-  'type': '',
-  'Dr': '',
-  'Cr': ''
+  0:{
+    0:{
+'when': '',
+'type': '',
+'Dr': '',
+'Cr': ''
 
 },
 1:{
@@ -132,7 +148,115 @@ let submission ={
 'Dr': '',
 'Cr': ''
 
-}}}
+},
+
+2:{
+  'when': '',
+  'type': '',
+  'Dr': '',
+  'Cr': ''
+  
+  },
+
+  3:{
+    'when': '',
+    'type': '',
+    'Dr': '',
+    'Cr': ''
+    
+    }},
+  1:{
+      0:{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+        
+        },
+        1:{
+        'when': '',
+        'type': '',
+        'Dr': '',
+        'Cr': ''
+        
+        },
+        
+        2:{
+          'when': '',
+          'type': '',
+          'Dr': '',
+          'Cr': ''
+          
+          },
+        
+          3:{
+            'when': '',
+            'type': '',
+            'Dr': '',
+            'Cr': ''
+            
+            }},
+   2:{
+              0:{
+                'when': '',
+                'type': '',
+                'Dr': '',
+                'Cr': ''
+                
+                },
+                1:{
+                'when': '',
+                'type': '',
+                'Dr': '',
+                'Cr': ''
+                
+                },
+                
+                2:{
+                  'when': '',
+                  'type': '',
+                  'Dr': '',
+                  'Cr': ''
+                  
+                  },
+                
+                  3:{
+                    'when': '',
+                    'type': '',
+                    'Dr': '',
+                    'Cr': ''
+                    
+                    }},
+                    3:{0:{
+                      'when': '',
+                      'type': '',
+                      'Dr': '',
+                      'Cr': ''
+                      
+                      },
+                      1:{
+                      'when': '',
+                      'type': '',
+                      'Dr': '',
+                      'Cr': ''
+                      
+                      },
+                      
+                      2:{
+                        'when': '',
+                        'type': '',
+                        'Dr': '',
+                        'Cr': ''
+                        
+                        },
+                      
+                        3:{
+                          'when': '',
+                          'type': '',
+                          'Dr': '',
+                          'Cr': ''
+                          
+                          }}}
 
 export default function App() {
 
@@ -165,43 +289,44 @@ export default function App() {
       
 //inputRef.target changes.....
 
-      for (let n=0; n<Object.keys([...questions][page].correct_answers[0].entries).length-1;n++){
+      for (let c=0; c<Object.keys([...questions][page].correct_answers).length-1;c++){
         console.log(inputRef.target.value);
 console.log(submission)
         //number answers b
         //index l
+        for (let n=0; n<Object.keys([...questions][page].correct_answers[c].entries).length-1;n++){
 
 
-       if((inputRef.target.name)&&(submission[page][inputRef.target.id.slice(1)])){
+       if(inputRef){
 
-        console.log(inputRef.target.id)
 
       if (inputRef.target.name==='date') {
 
-        submission[page][inputRef.target.id.slice(1)].when = inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
+        submission[page][inputRef.target.id].when = inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
       } 
       if (inputRef.target.name==='type') {
 
-        submission[page][inputRef.target.id.slice(1)].type = inputRef.target.value;
+        submission[page][inputRef.target.id].type = inputRef.target.value;
       }
         if (inputRef.target.name==='Dr'){
 
-        submission[page][inputRef.target.id.slice(1)].Dr = inputRef.target.value;
+        submission[page][inputRef.target.id].Dr = inputRef.target.value;
         
         }
         if(inputRef.target.name==="Cr") {
 
-          submission[page][inputRef.target.id.slice(1)].Cr = inputRef.target.value;
-        }
-      // getAns(questions[n].correct_answers[b].entries);
-      // console.log(JSON.stringify(ans));
-      console.log(JSON.stringify(submission[page]))
+          submission[page][inputRef.target.id].Cr = inputRef.target.value;
+        }}
+     
     }
-sub1[page][inputRef.target.id.slice(1)]=submission[page][inputRef.target.id.slice(1)];
+    getAns(questions[page].correct_answers[c].entries)
+
+    // console.log(JSON.stringify(ans));
+    console.log(JSON.stringify(submission[page]))
+sub1[page][inputRef.target.id]=submission[page][inputRef.target.id];
   
   }
 
-console.log(sub1);
 
 }
 
