@@ -314,10 +314,11 @@ console.log(submission)
         submission[page][inputRef.target.id].Dr = inputRef.target.value;
         
         }
-        if(inputRef.target.name==="Cr") {
+        if(inputRef.target.name==='Cr') {
 
           submission[page][inputRef.target.id].Cr = inputRef.target.value;
-        }}
+        }
+      }
      
     }
   
@@ -435,14 +436,10 @@ console.log(submission)
   
       <br />
       <br />
-      <br />
-      <br />
-      <br/>
       <br/>
       <hr />
       <br />
       <br />
-      <br/>
       <br/>
       <br/>
       <br/>
@@ -476,7 +473,9 @@ console.log(submission)
       <br /><hr />
       <br />
       <br />
-      {JSON.stringify(submission)}
+
+
+      <b>{JSON.stringify(submission[page])}</b>
 
       <br />
       <br />
