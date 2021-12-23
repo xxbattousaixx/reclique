@@ -8,16 +8,15 @@ export default function Questions(props){
 
 
     const displayQuestions = (props) => {
-
         const {questions} = props;
         const {page} = props;
-
+        const {arr}=props;
         if (questions.length > 0){
 
 
             
             return(questions.map((question,i)=>{
-
+arr.push(question.correct_answers);
                 if (i===page){
                 
                 console.log(i);

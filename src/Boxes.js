@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import 'jquery/src/jquery';
-import {Col, Row, Form} from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
 
 
 export default function Boxes(props){
@@ -32,9 +32,10 @@ export default function Boxes(props){
   return([...questions].map((q,i)=>{
 
 
-    
-       
-        return(q.correct_answers.map((cs,ii)=>{return(cs.entries.map((entry,iii)=>{if ((page===i)&&(ii===1)){console.log(entry);return(
+
+        return(q.correct_answers.map((cs,ii)=>{
+          
+          return(cs.entries.map((entry,iii)=>{if ((page===i)&&(ii===1)){console.log(entry);return(
           <><Col  xs={3} md={3} lg={3} sm={3}>
           <Form.Control value={inputRef.target} ref={inputRef} id={`${iii}`} name='date' key={`d${page}${i}${ii}${iii}`}   type="date"  onChange={updateInput}/>                </Col>
           < Col  xs={3} md={3} lg={3} sm={3}>
@@ -54,9 +55,13 @@ export default function Boxes(props){
             </Col>
             <Col  xs={3} md={3} lg={3} sm={3} id="vl">  <Form.Control value={inputRef.target} ref={inputRef}  id={`${iii}`} key={`cr${page}${i}${ii}${iii}`}  name="Cr"  onChange={updateInput} default type="text" placeholder="$$$" />
             </Col></>)}}))}
-            ))}))
+            ))}
+            
+            
+            ))
+          
           }
-
+       
 
   
 return (

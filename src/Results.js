@@ -3,17 +3,16 @@
 
 import React from 'react';
 import 'jquery/src/jquery';
-import { Row,Col} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 
 export default function Results(props){
+    const {res,getRes}=props;
 const {sub}=props
 const {ans}=props;
 const {page}=props;
     const displayResults = (props) => {
         const {questions} = props;
-        var {submission} = props;
         var qs=[];
-        var {sub1} = props;
         if (sub){
  return(questions.map((question,i)=>{
 for(let f=0;f<Object.keys(question.correct_answers).length;f++){
@@ -150,13 +149,10 @@ for(let f=0;f<Object.keys(question.correct_answers).length;f++){
                                 }}}
 
 for (let c=0;c<Object.keys(question.correct_answers[page]).length;c++){
-    console.log(sub1);
-    console.log(sub)
-    console.log(res22)
     for (let y=0;y<Object.keys(question.correct_answers[page].entries).length;y++){
 if(sub[page][y].when===question.correct_answers[page].entries[y].when){
     res22[page][y].when ='correct';
-    qs[y] ='correct';
+    
 }else{   res22[page][y].when ='incorrect';}
 
     if(sub[page][y].type===question.correct_answers[page].entries[y].type){
@@ -181,52 +177,56 @@ if(question.correct_answers[page].entries[y].Dr){
     }
 else{    res22[page][y].Cr ='incorrect';
 }}
-if(((res22[page][y].Cr==='correct')||(res22[page][y].Cr==='correct'))&&(res22[page][y].Cr==='correct')&&(res22[page][y].Cr==='correct')){
+if(((res22[page][y].Dr==='correct')||(res22[page][y].Cr==='correct'))&&(res22[page][y].type==='correct')&&(res22[page][y].when==='correct')){
+    qs[page]=''
     qs[page][y]='correct';
 
 }               
  if (i===page){
              console.log(ans);
- 
+                                        
+                return(questions[page].correct_answers[1].entries.map((a,b)=>{
 
-                 
-                    return(
-
-
-                        <div className='answers' id="results" key={`${i}`}>
+return(
+                        <div className='answers' id="results" key={`${b}`}>
     <Col xs={12} md={12} lg={12} sm={12}>
                             
-                            <h4 key={'subs${i}${y}'}className='qt'>{JSON.stringify(sub)}</h4> 
-                            <h4 key={'qs${i}${y}'} className='qt'>{JSON.stringify([...qs])}</h4> 
+                            <h4 key={`qs${i}${y}`} className='qt'>{JSON.stringify([...qs])}</h4> 
                             
                                 </Col>
-                            <Col xs={3} md={3} lg={3} sm={3}>
-<h4 key={`ad${i}`}>Date--<br/> Answer: {JSON.stringify(ans[page])}<br/> vs. <br/> Your answer: {JSON.stringify(sub[page][y].when)}</h4>
-</Col>
-<Col xs={3} md={3} lg={3} sm={3}>
-
-<h4 key={`at${i}`}>Type--<br/> Answer: {JSON.stringify(ans[page])}<br/> vs. <br/> Your answer: {JSON.stringify(sub[page][y].type)}</h4>
-</Col>
-<Col xs={3} md={3} lg={3} sm={3}>
-
-<h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(ans[page])}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][y].Cr)}</h4>
-</Col>
-<Col xs={3} md={3} lg={3} sm={3}>
-
-<h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(ans[page])}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][y].Dr)}</h4>
-</Col>
-
-                                
-
+                            
+                            
+        <Col xs={3} md={3} lg={3} sm={3}>
+                <h4 key={`ad${i}`}>Date--<br/> Answer: {JSON.stringify(a.when)}<br/> vs. <br/> Your answer: {JSON.stringify(sub[page][b].when)}</h4>
+                </Col>
+                <Col xs={3} md={3} lg={3} sm={3}>
+                
+                <h4 key={`at${i}`}>Type--<br/> Answer: {JSON.stringify(a.type)}<br/> vs. <br/> Your answer: {JSON.stringify(sub[page][b].type)}</h4>
+                </Col>
+                <Col xs={3} md={3} lg={3} sm={3}>
+                
+                <h4 key={`adr${i}`}>Dr--<br/> Answer: {JSON.stringify(a.Dr)}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][b].Cr)}</h4>
+                </Col>
+                <Col xs={3} md={3} lg={3} sm={3}>
+                
+                <h4 key={`acr${i}`}>Cr--<br/> Answer: {JSON.stringify(a.Cr)}<br/> vs.<br/> Your answer: {JSON.stringify(sub[page][b].Dr)}</h4>
+                </Col>
+                
+        
                     
-  </div>
+    </div>)}))
+
+
+}}
             
-                    )
-
+                
+                    
                     }
-                }       
+                
+                
 
-            }
+            
+            
             
                 
 return(<>

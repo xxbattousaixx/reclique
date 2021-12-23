@@ -8,7 +8,8 @@ import Questions from './Questions';
 import Results from './Results';
 import Boxes from './Boxes';
 import * as Scroll from 'react-scroll';
-import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import {animateScroll as scroll } from 'react-scroll'
+let arr=[];
 let sub1 = {
   0:{
     0:{
@@ -302,7 +303,7 @@ console.log(submission)
 
       if (inputRef.target.name==='date') {
 
-        submission[page][inputRef.target.id].when = inputRef.target.value.slice(8,10)+'/'+inputRef.target.value.slice(5,7);
+        submission[page][inputRef.target.id].when = parseInt(inputRef.target.value.slice(8,10))+'/'+inputRef.target.value.slice(5,7);
       } 
       if (inputRef.target.name==='type') {
 
@@ -319,18 +320,20 @@ console.log(submission)
         }}
      
     }
-    getAns(questions[page].correct_answers[c].entries)
+  
 
-    // console.log(JSON.stringify(ans));
+  
+
     console.log(JSON.stringify(submission[page]))
 sub1[page][inputRef.target.id]=submission[page][inputRef.target.id];
   
   }
 
-
 }
 
     const submitButton = () => {
+      getAns(arr);
+      getSub('');
       getSub(sub1);
       //CLEAR ALL
       scroll.scrollToBottom();
@@ -388,7 +391,7 @@ sub1[page][inputRef.target.id]=submission[page][inputRef.target.id];
     
     <div key="app" className="App" id="con1">
 
-      <Questions key="qs" questions={questions} page={page} />
+      <Questions key="qs" ans={ans} getAns={getAns} arr={arr} questions={questions} page={page} />
 
 
       <Container key="head2" id="cf" fluid>
@@ -480,7 +483,7 @@ sub1[page][inputRef.target.id]=submission[page][inputRef.target.id];
       <br />
       <br />
 <Container key="results" fluid>
-      <Results sub1={sub1} key='2' sub={sub} ans={ans} res={res} page={page} questions={questions} />
+      <Results sub1={sub1} key='2' sub={sub} ans={ans} res={res} getRes={getRes} page={page} questions={questions} />
 
 </Container>
     </div>
