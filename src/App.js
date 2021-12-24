@@ -16,7 +16,7 @@ import {animateScroll as scroll } from 'react-scroll'
 import Particles from "react-tsparticles";
 import particlesOptions from "./particles.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faPencilAlt, faPaste, faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import {faPastafarianism, faPlus, faBacteria, faBahai, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 let arr=[];
 
 
@@ -417,9 +417,9 @@ console.log(submission)
 </Col>
     <Col xs={3} md={3} lg={3} sm={3}>
     <ButtonGroup style={{ marginTop: 10, marginBottom:30 }}>
-        <ButtonIcon className="menu" variant="border-filled" icon={<FontAwesomeIcon icon={faPlus} />} />
-        <ButtonIcon variant="border-filled" icon={<FontAwesomeIcon icon={faPencilAlt} />} />
-        <ButtonIcon variant="border-filled" icon={<FontAwesomeIcon icon={faPaste} />} />
+        <ButtonIcon className="menu" variant="border-filled" icon={<FontAwesomeIcon icon={faBacteria} />} />
+        <ButtonIcon variant="border-filled" icon={<FontAwesomeIcon icon={faPastafarianism} />} />
+        <ButtonIcon variant="border-filled" icon={<FontAwesomeIcon icon={faBahai} />} />
         <ButtonMenu
           menuAlignment="right"
           menuSize="x-small"
