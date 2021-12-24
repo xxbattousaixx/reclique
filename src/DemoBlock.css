@@ -1,0 +1,33 @@
+.buttons-div-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vmax;
+    height: 3vmax;
+    margin: 2vmax 2vmax 0 0;
+}
+
+.animation-reset-button{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: #32bafa;
+    color : #fff;
+    border: 0;
+    border-radius: 4;
+    font-size: 1rem;
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    outline: none;
+}
+
+
+.particle-effect-button{
+    background-color: #32bafa;
+    color: #fff;
+    font-size: 1.2rem;
+    border: 0;
+    padding: 1.5rem 3rem;
+    border-radius: 5;
+    cursor: pointer;
+}

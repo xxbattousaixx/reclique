@@ -5,7 +5,7 @@ import ButtonMenu from '@bit/nexxtway.react-rainbow.button-menu';
 import MenuItem from '@bit/nexxtway.react-rainbow.menu-item';
 import ButtonIcon from '@bit/nexxtway.react-rainbow.button-icon';
 import { Button,Container, Row, Col  } from 'react-bootstrap';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, setState } from "react";
 import axios from "axios";
 import 'jquery/src/jquery';
 import Questions from './Questions';
@@ -17,6 +17,7 @@ import Particles from "react-tsparticles";
 import particlesOptions from "./particles.json";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPastafarianism, faPlus, faBacteria, faBahai, faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import ButtonS from './ButtonS';
 let arr=[];
 
 
@@ -272,8 +273,6 @@ let submission ={
  
 
 export default function App() {
-  
- 
   let p = 0;
     const [questions, getQuestions] = useState('');
     const [page, getPage] = useState('');
@@ -291,7 +290,7 @@ export default function App() {
       getPage(p);
     }, [p]);
 
-
+   
     const getAllQuestions = () => {
       axios.get(baseURL)
         .then((response) => {
@@ -509,10 +508,15 @@ console.log(submission)
           <br /><br />
           <br />
         </Row>
-        <Row xs={12} md={12} lg={12} sm={12}><Col xs={12} md={12} lg={12} sm={12}>
-          <Button onClick={submitButton}>Submit</Button>
-          
+        <Row xs={12} md={12} lg={12} sm={12}>
+        <Col xs={4} md={4} lg={4} sm={4}></Col>
+
+          <Col xs={4} md={4} lg={4} sm={4}>
+        <div onClick={submitButton}><ButtonS/></div>
+
         </Col>
+        <Col xs={4} md={4} lg={4} sm={4}>
+</Col>
         </Row>
       </Container>
       <br />
