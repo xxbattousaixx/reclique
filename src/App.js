@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import './App.css';
-import { Button, Container, Row, Col  } from 'react-bootstrap';
+import ButtonGroup from '@bit/nexxtway.react-rainbow.button-group';
+import ButtonMenu from '@bit/nexxtway.react-rainbow.button-menu';
+import MenuItem from '@bit/nexxtway.react-rainbow.menu-item';
+import ButtonIcon from '@bit/nexxtway.react-rainbow.button-icon';
+import { Button,Container, Row, Col  } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import 'jquery/src/jquery';
@@ -9,7 +13,13 @@ import Results from './Results';
 import Boxes from './Boxes';
 import * as Scroll from 'react-scroll';
 import {animateScroll as scroll } from 'react-scroll'
+import Particles from "react-tsparticles";
+import particlesOptions from "./particles.json";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faPencilAlt, faPaste, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 let arr=[];
+
+
 let sub1 = {
   0:{
     0:{
@@ -259,8 +269,11 @@ let submission ={
                           
                           }}}
 
-export default function App() {
+ 
 
+export default function App() {
+  
+ 
   let p = 0;
     const [questions, getQuestions] = useState('');
     const [page, getPage] = useState('');
@@ -269,6 +282,9 @@ export default function App() {
     const [ans,getAns] = useState('');
     const inputRef = React.createRef('');
 
+    // play will start the animations, if the move is not enabled it won't enable it, it just updates the frame
+    
+    // pause will stop the animations
     const baseURL = "https://reclique.github.io/web-dev-testing/1_accounting_game/questions.json";
     useEffect(() => {
       getAllQuestions();
@@ -387,9 +403,40 @@ console.log(submission)
 
 
     return (
-    
+    <> 
+  
+    <Particles id="tsparticles"
+                style={{
+                  position: "absolute",
+                }}
+                width="100wh"
+                height="100vh"
+                options={particlesOptions} />
+    <Row xs={4} md={4} lg={4} sm={4} >
+    <Col xs={4} md={4} lg={4} sm={4}>
+</Col>
+    <Col xs={3} md={3} lg={3} sm={3}>
+    <ButtonGroup style={{ marginTop: 10, marginBottom:30 }}>
+        <ButtonIcon className="menu" variant="border-filled" icon={<FontAwesomeIcon icon={faPlus} />} />
+        <ButtonIcon variant="border-filled" icon={<FontAwesomeIcon icon={faPencilAlt} />} />
+        <ButtonIcon variant="border-filled" icon={<FontAwesomeIcon icon={faPaste} />} />
+        <ButtonMenu
+          menuAlignment="right"
+          menuSize="x-small"
+          icon={<FontAwesomeIcon icon={faAngleDown} />}
+        >
+          <MenuItem label="Menu Item One" />
+          <MenuItem label="Menu Item Two" />
+          <MenuItem label="Menu Item Three" />
+        </ButtonMenu>
+      </ButtonGroup></Col>
+    <Col xs={3} md={3} lg={3} sm={3}>
+</Col></Row>
+<br/>
+<br/>
     <div key="app" className="App" id="con1">
-
+    
+    
       <Questions key="qs" ans={ans} getAns={getAns} arr={arr} questions={questions} page={page} />
 
 
@@ -429,7 +476,7 @@ console.log(submission)
 
         </Row>
         </Container>
-        
+     
 
   
   
@@ -440,8 +487,6 @@ console.log(submission)
       <hr />
       <br />
       <br />
-      <br/>
-      <br/>
       <br/>
       <br/>
       <Container key="buttons" fluid>
@@ -466,6 +511,7 @@ console.log(submission)
         </Row>
         <Row xs={12} md={12} lg={12} sm={12}><Col xs={12} md={12} lg={12} sm={12}>
           <Button onClick={submitButton}>Submit</Button>
+          
         </Col>
         </Row>
       </Container>
@@ -484,6 +530,7 @@ console.log(submission)
 
 </Container>
     </div>
+    </>
 
     );
 
